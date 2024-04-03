@@ -34,6 +34,6 @@
 Membros da Equipe:
  * Breno Juliano (23103778)
  * Cleverson Borges (23100758)
- * Felipe Esmanhoto (23100764)
- * Gustavo Luiz Kohller (23102480)
+ * Felipe Esmanhotto (23100764)
+ * Gustavo Luiz Kohler (23102480)
  * Lucas Nunes Bossle (23100751)
