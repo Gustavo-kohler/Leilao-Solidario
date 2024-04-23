@@ -15,4 +15,4 @@ function MainLayout(props) {
   )
 }
 
-export default App
+export default MainLayout

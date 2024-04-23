@@ -8,4 +8,4 @@ function Me() {
     )
 }
 
-export default Me;
+export default Me
