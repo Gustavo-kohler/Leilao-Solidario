@@ -8,4 +8,4 @@ function PersonalData() {
     )
 }
 
-export default PersonalData;
+export default PersonalData

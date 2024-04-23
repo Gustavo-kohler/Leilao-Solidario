@@ -8,4 +8,4 @@ function ListOfAuctions() {
     )
 }
 
-export default ListOfAuctions;
+export default ListOfAuctions

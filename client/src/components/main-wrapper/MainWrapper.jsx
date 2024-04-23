@@ -8,4 +8,4 @@ function MainWrapper(props) {
     )
 }
 
-export default MainWrapper;
+export default MainWrapper

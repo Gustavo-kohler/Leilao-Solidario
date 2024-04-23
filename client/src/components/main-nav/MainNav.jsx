@@ -39,4 +39,4 @@ function MainNav() {
     )
 }
 
-export default MainNav;
+export default MainNav

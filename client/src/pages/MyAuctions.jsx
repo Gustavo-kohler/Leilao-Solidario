@@ -8,4 +8,4 @@ function MyAuctions() {
     )
 }
 
-export default MyAuctions;
+export default MyAuctions

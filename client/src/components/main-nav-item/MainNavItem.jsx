@@ -8,4 +8,4 @@ function MainNavItem(props) {
     )
 }
 
-export default MainNavItem;
+export default MainNavItem

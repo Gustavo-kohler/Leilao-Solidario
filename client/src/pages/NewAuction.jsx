@@ -8,4 +8,4 @@ function NewAuction() {
     )
 }
 
-export default NewAuction;
+export default NewAuction
