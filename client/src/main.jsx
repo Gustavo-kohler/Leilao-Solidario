@@ -47,7 +47,7 @@ const router = createBrowserRouter([
     element: <Me />,
     children: [
       {
-        path:"/personal-data",
+        path:"/me/personal-data",
         element: <PersonalData />
       }
     ]
