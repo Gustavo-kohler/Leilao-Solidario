@@ -25,7 +25,7 @@ def login():
         else:
             if bcrypt.check_password_hash(usuario.senha, form_login.senha.data):
                 login_user(usuario, remember=form_login.lembrar_dados.data)
-                flash(f'Seja bem-vindo {form_login.email.data}!', 'alert-success')
+                flash(f'Seja bem-vindo {usuario.username}!', 'alert-success')
                 par_next = request.args.get('next')
                 if par_next:
                     return redirect(par_next)
