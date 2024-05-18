@@ -25,12 +25,12 @@
                     <p>Leilão cancelado</p>
                 </div>
             {% endif %}
-            {% if auction.status == 'open' && auction.owner != user%}
+            {% if auction.status == 'open' and auction.owner != current_user%}
                 <form action="" method="POST">
                     <input type="number" name="bid" placeholder="Lance">
                     <button type="submit">Fazer novo lance</button>
                 </form>
-            {% elif auction.status == 'open' and auction.owner == user %}
+            {% elif auction.status == 'open' and auction.owner == current_user %}
                 <form action="" method="POST">
                     <button type="submit">Cancelar leilão</button>
                 </form>
