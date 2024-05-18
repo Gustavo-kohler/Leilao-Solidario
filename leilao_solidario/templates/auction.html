@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+    <h1>{{ auction.title }}</h1>
+    <div class="content">
+        <div>
+            {% if auction.status == 'open' %}
+                <div class="bid-window">
+                    <p>Lance Atual</p>
+                    <p>R$ {{ auction.current_bid }}</p>
+                    <p>Feito por: {{auction.owner.name}}</p>
+                </div>
+                <p>Tempo restante: {{auction.time_left}}</p>
+            {% elif auction.status == 'ended' %}
+                <div class="bid-window">
+                    <p>Arrematado!</p>
+                    <p>R$ {{ auction.current_bid }}</p>
+                    <p>Feito por: {{auction.owner.name}}</p>
+                </div>
+                <p>Leilão finalizado!</p>
+            {% else %}
+                <div class="bid-window">
+                    <p>Leilão cancelado</p>
+                </div>
+            {% endif %}
+            {% if auction.status == 'open' and auction.owner != current_user%}
+                <form action="" method="POST">
+                    <input type="number" name="bid" placeholder="Lance">
+                    <button type="submit">Fazer novo lance</button>
+                </form>
+            {% elif auction.status == 'open' and auction.owner == current_user %}
+                <form action="" method="POST">
+                    <button type="submit">Cancelar leilão</button>
+                </form>
+            {% endif %}
+        </div>
+        <div>
+            <img src="">
+            <p>{{ auction.description }}</p>
+            <h4>{{auction.organization}}</h4>
+            <p>Organizacao favorecida</p>
+        </div>
+    </div>
+
+
+</div>
+
+{%end block %}
