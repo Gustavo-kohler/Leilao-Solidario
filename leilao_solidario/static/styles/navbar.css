@@ -1,0 +1,48 @@
+header {
+    height: 6rem;
+    display: flex;
+    padding: 0 2rem;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--window);
+}
+
+.logo-wrapper {
+    height: 4rem;
+    width: 4rem;
+    padding: .2rem;
+    transition: .2s;
+}
+
+.logo-wrapper:hover {
+    padding: 0;
+    height: 4.2rem;
+    width: 4.2rem;
+}
+
+.logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+nav > ul{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+}
+
+nav > ul > li > a{
+    color: black;
+    font-size: 1rem;
+    text-decoration: none;
+    border-bottom: 0.15rem solid transparent;
+    transition: 0.5s;
+}
+
+nav > ul > li > a:hover{
+    border-color: var(--main-color);
+}
+
