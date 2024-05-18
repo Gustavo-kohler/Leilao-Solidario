@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, length, Email, EqualTo, ValidationError
-from leilao_solidario.models.user import Usuario
+from leilao_solidario.models import Usuario
 
 
 class FormCriarConta(FlaskForm):

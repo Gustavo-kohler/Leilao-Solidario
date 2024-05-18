@@ -1,4 +1,4 @@
-from leilao_solidario.models.user import Usuario
+from leilao_solidario.models import Usuario
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from leilao_solidario.forms.login import FormLogin, FormCriarConta
 from leilao_solidario.extensions import bcrypt, db, mail
