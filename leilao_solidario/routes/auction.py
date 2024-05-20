@@ -7,3 +7,8 @@ AUCTION = Blueprint('auction', __name__)
 @AUCTION.route('/auction')
 def auction():
     return render_template('auction.html', current_user=current_user)
+
+
+@AUCTION.route('/meusleiloes')
+def meusleiloes():
+    return render_template('meusleiloes.html', current_user=current_user)

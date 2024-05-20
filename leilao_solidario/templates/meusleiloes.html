@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="{{ url_for('static', filename='styles/meusleiloes.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<main class="main">
+    <h1>Meus Leilões</h1>
+<div class="topbar">
+    <div class="indices">
+        <p><strong>Leilões que participo</strong></p>
+        <p>Meus leilões ativos</p>
+        <p>Meus leilões finalizados</p>
+    </div>
+    <div class="botao">
+        <p>Novo leilão</p>
+    </div>
+</div>
+<div class='leiloes-container'>
+    <div class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 1</p>
+    </div>
+    <div class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 2</p>
+    </div>
+    <div class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 3</p>
+    </div>
+    <div class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 4</p>
+    </div>
+    <div class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 5</p>
+    </div>
+    <div class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 6</p>
+    </div>
+    <div class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 6</p>
+    </div>
+</div>
+</main>
+
+{% endblock %}
