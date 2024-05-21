@@ -1,7 +1,8 @@
 h1 {
-    font-size: 4rem;
-    text-align: center;
+    font-size: 3.8rem;
+    text-align: left;
     margin: 3.4rem;
+    margin-left: 15%;
 }
 
 body {
@@ -77,13 +78,23 @@ a {
     border-radius: 5px;
 }
 
+.leiloes-item:hover {
+    width: 102%
+}
+
+.leiloes-item:hover .leilao-titulo {
+    font-size: 1.3rem;
+}
+
 .leilao-img {
     height: 80%;
     width: 100%;
 }
 
+
 .leilao-titulo{
     text-align: center;
     font-size: 1.2rem;
     padding: 0.3rem;
+    color: black;
 }
