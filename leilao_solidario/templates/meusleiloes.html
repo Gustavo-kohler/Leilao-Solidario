@@ -6,8 +6,19 @@
 
 {% block body %}
 <main class="main">
-    <h1>Meus Leilões</h1>
+    <h1 id="test">Meus Leilões</h1>
 <div class="topbar">
+    <div class="dropdown">
+        <div class="select">
+            <span class="selected">Leilões que participo</span>
+            <div class="caret"></div>
+        </div>
+        <ul class="menu">
+            <li class="active">Leilões que participo</li>
+            <li>Meus leilões ativos</li>
+            <li>Meus leilões finalizados</li>
+        </ul>
+    </div>
     <div class="indices">
         <a href="url" class="ind-atual">Leilões que participo</a>
         <a href="url" class="ind">Meus leilões ativos</a>
@@ -49,4 +60,8 @@
 </div>
 </main>
 
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='scripts/meusleiloes.js') }}"></script>
 {% endblock %}

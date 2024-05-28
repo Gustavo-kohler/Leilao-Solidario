@@ -21,6 +21,89 @@ a {
     margin: 0 auto;
 }
 
+.dropdown {
+    display:none;
+    min-width: none;
+    position: relative;
+    font-size: 1rem;
+    margin: .3rem .2rem;
+}
+
+.select {
+    background: var(--sec-window);
+    color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: .5em;
+    padding: .5em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.select-clicked {
+    border: 2px var(--main-color);
+}
+
+.select:hover {
+    background: var(--window);
+    border-radius: 0;
+    transition: .5s;
+}
+
+.caret {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid rgb(78, 78, 78);
+    transition: 0.3s;
+    margin-left: .3rem
+}
+
+.caret-rotate {
+    transform: rotate(-180deg);
+}
+
+.menu {
+    list-style: none;
+    padding: .2em .5em;
+    background: var(--window);
+    border: 1px var(--main-color) outset;
+    border-radius: .5em;
+    color: rgb(90, 90, 90);
+    position: absolute;
+    top: 3em;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    opacity: 0;
+    display: none;
+    transition: .2s;
+    z-index: 1;
+}
+
+.menu li {
+    padding: .7em .5em;
+    margin: .3em 0;
+    border-radius: .5em;
+    cursor: pointer;
+}
+
+.menu li:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+.active {
+    color: black;
+}
+
+.menu-open {
+    display:block;
+    opacity: 1;
+}
+
 .indices {
     display: flex;
     gap: 1rem;
@@ -29,7 +112,7 @@ a {
 }
 
 .ind-atual{
-    color: black;
+    color: rgba(0, 0, 0, 0.85);
 }
 
 .ind {
@@ -98,12 +181,21 @@ a {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .indices {
-        font-size: .8rem;
-    }
 
     .botao {
-        font-size: .8rem;
+        font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 880px) {
+
+    .dropdown {
+        display: flex
+    }
+
+    .indices {
+        display: none
     }
 }
 
@@ -111,4 +203,5 @@ a {
     .leiloes-container {
         grid-template-columns: repeat(1, 1fr);
     }
+
 }
