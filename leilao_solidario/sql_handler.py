@@ -12,8 +12,8 @@ def reset_db():
 def add_exemplo_leiloes():
     with app.app_context():
         # Criar usuários
-        usuario1 = Usuario(username="usuario1", email="usuario1@example.com", senha="senha1")
-        usuario2 = Usuario(username="usuario2", email="usuario2@example.com", senha="senha2")
+        usuario1 = Usuario(username="usuario1", email="usuario3@example.com", senha="senha1")
+        usuario2 = Usuario(username="usuario2", email="usuario4@example.com", senha="senha2")
 
         db.session.add(usuario1)
         db.session.add(usuario2)

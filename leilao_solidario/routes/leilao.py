@@ -13,5 +13,8 @@ def lista_leiloes():
     leiloes = Leilao.query.all()
     print(current_user.id)
     leiloes_dict = [leilao.to_dict() for leilao in leiloes if leilao.host != current_user.id]
+    for leilao in leiloes_dict:
+        leilao['ultimo'] = Usuario.query.get(leilao['ultimo']).username
+        leilao['host'] = Usuario.query.get(leilao['host']).username
     return render_template('lista_leiloes.html', leiloes=leiloes_dict)
 

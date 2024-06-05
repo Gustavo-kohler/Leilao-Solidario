@@ -49,6 +49,6 @@ class Leilao(db.Model):
             'ultimo': self.ultimo,
             'host': self.host,
             'status': self.status,
-            'hora_ultimo': self.hora_ultimo.isoformat() if self.hora_ultimo else None
+            'hora_ultimo': self.hora_ultimo.strftime('%H:%M dia (%d/%m/%Y)') if self.hora_ultimo else None
         }
 
