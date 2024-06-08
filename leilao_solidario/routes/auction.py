@@ -31,3 +31,7 @@ def auction(auction_id):
                             host=host,
                             form_cancela_leilao=form_cancela_leilao,
                             form_novo_lance=form_novo_lance)
+  
+@AUCTION.route('/meusleiloes')
+def meusleiloes():
+    return render_template('meusleiloes.html', current_user=current_user)

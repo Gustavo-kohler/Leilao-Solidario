@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="{{ url_for('static', filename='styles/meusleiloes.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<main class="main">
+    <h1 id="test">Meus Leilões</h1>
+<div class="topbar">
+    <div class="dropdown">
+        <div class="select">
+            <span class="selected">Leilões que participo</span>
+            <div class="caret"></div>
+        </div>
+        <ul class="menu">
+            <li class="active">Leilões que participo</li>
+            <li>Meus leilões ativos</li>
+            <li>Meus leilões finalizados</li>
+        </ul>
+    </div>
+    <div class="indices">
+        <a href="url" class="ind-atual">Leilões que participo</a>
+        <a href="url" class="ind">Meus leilões ativos</a>
+        <a href="url" class="ind">Meus leilões finalizados</a>
+    </div>
+    <a href="/" class="botao">
+        <p>Novo leilão</p>
+    </a>
+</div>
+<div class='leiloes-container'>
+    <a href="/" class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 1</p>
+    </a>
+    <a href="/" class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 1</p>
+    </a>
+    <a href="/" class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 1</p>
+    </a>
+    <a href="/" class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 1</p>
+    </a>
+    <a href="/" class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 1</p>
+    </a>
+    <a href="/" class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 1</p>
+    </a>
+    <a href="/" class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>Titulo 1</p>
+    </a>
+</div>
+</main>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='scripts/meusleiloes.js') }}"></script>
+{% endblock %}
