@@ -25,15 +25,13 @@
                     <p>Leilão cancelado</p>
                 </div>
             {% endif %}
-            {% if auction.status == 'open' and host != current_user%}
-                <form action="" method="POST">
-                    <input type="number" name="bid" placeholder="Lance">
-                    <button type="submit">Fazer novo lance</button>
-                </form>
+            
+            {% if auction.status == 'open' and host != current_user %}
+                {{ form_novo_lance.lance.label(class="sr-only") }}
+                {{ form_novo_lance.lance(placeholder="Lance", class="form-control") }}
+                {{ form_novo_lance.botao_submit_fazer_lance(class="btn btn-primary") }}
             {% elif auction.status == 'open' and host == current_user %}
-                <form action="" method="POST">
-                    <button type="submit">Cancelar leilão</button>
-                </form>
+                {{ form_cancela_leilao.botao_cancelar(class="btn btn-danger") }}
             {% endif %}
         </div>
         <div>
