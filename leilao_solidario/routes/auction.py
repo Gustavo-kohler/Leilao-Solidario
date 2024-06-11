@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for
-from flask_login import current_user
+from flask_login import current_user, login_required
 from leilao_solidario.extensions import db
-from leilao_solidario.models import Leilao, Usuario
+from leilao_solidario.models import Leilao, Usuario, UsuarioRelLeilao
 from leilao_solidario.forms.bid import FormNewBid, FormCancelAuction
 
 AUCTION = Blueprint('auction', __name__)
@@ -32,6 +32,3 @@ def auction(auction_id):
                             form_cancela_leilao=form_cancela_leilao,
                             form_novo_lance=form_novo_lance)
   
-@AUCTION.route('/meusleiloes')
-def meusleiloes():
-    return render_template('meusleiloes.html', current_user=current_user)

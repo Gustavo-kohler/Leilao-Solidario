@@ -6,7 +6,7 @@ from flask_login import current_user
 
 class FormNewBid(FlaskForm):
     lance = FloatField("Novo lance")
-    user = current_user.id 
+    #user = current_user.id 
     botao_submit_fazer_lance = SubmitField('Fazer novo lance')
 
     def validate_bid(self, lance, auction):

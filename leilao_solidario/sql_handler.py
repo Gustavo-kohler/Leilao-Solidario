@@ -1,5 +1,5 @@
 from leilao_solidario import db
-from leilao_solidario.models.user import Usuario
+from leilao_solidario.models import Usuario
 from app import app
 
 def reset_db():

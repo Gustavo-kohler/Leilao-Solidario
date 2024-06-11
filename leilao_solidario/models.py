@@ -21,6 +21,7 @@ class Leilao(db.Model):
     id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
     titulo: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
     descricao: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
+    imagem: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)    # Deixei string pq pensei que é o link da imagem?
     organizacao: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
     lance_atual: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
     ultimo: so.Mapped[int] = so.mapped_column(sa.Integer, sa.ForeignKey("usuario.id", name="fk_ultimo_usuario"),
@@ -29,3 +30,10 @@ class Leilao(db.Model):
                                               nullable=False)
     status: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
     hora_ultimo: so.Mapped[datetime] = so.mapped_column(sa.DateTime, nullable=False)
+
+class UsuarioRelLeilao(db.Model):
+    id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
+    id_usuario: so.Mapped[int] = so.mapped_column(sa.Integer, db.ForeignKey('usuario.id'), nullable=False)
+    id_leilao: so.Mapped[int] = so.mapped_column(sa.Integer, db.ForeignKey('leilao.id'), nullable=False)
+
+    
