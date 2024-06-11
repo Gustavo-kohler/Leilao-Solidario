@@ -4,3 +4,6 @@ def registrar_blueprints(app):
 
     from .routes.auction import AUCTION
     app.register_blueprint(AUCTION)
+
+    from .routes.leilao import LEILAO
+    app.register_blueprint(LEILAO)

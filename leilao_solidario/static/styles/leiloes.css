@@ -1,0 +1,105 @@
+/* Estilização principal do container */
+.container {
+    max-width: 60rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--window);
+    border-radius: 1.5rem;
+    padding: 4rem;
+    margin: auto;
+    margin-top: 2rem; /* Adiciona espaçamento acima do container */
+
+}
+
+/* Centraliza o conteúdo e dá espaçamento */
+.text-center {
+    margin-bottom: 0.6rem;
+    width: 100%;
+}
+
+/* Estilização do título principal */
+.text-primary {
+    color: #007bff; /* ou qualquer cor que desejar */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Estilização das linhas */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Estilização das colunas das cards */
+.col {
+    flex: 0 0 48%; /* Cada coluna ocupa aproximadamente 48% da largura da linha */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem; /* Adiciona espaçamento abaixo de cada card */
+}
+
+/* Estilização das cards */
+.card {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 1.25rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-top: 20px; /* Adiciona 20px de espaçamento superior */
+}
+
+/* Estilização do corpo das cards */
+.card-body {
+    padding: 3rem;
+}
+
+.card-image {
+    flex: 0 0 300px;
+    height: 300px;
+    background-color: #b400eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 55px; /* Adiciona 20px de espaçamento superior */
+
+}
+
+.card-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+/* Estilização do título das cards */
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Estilização do texto das cards */
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+
+}
+
+/* Estilização do botão dentro das cards */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    display: inline-block;
+}

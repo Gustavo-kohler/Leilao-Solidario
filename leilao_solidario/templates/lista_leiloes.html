@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link href="{{ url_for('static', filename='styles/leiloes.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="text-center">
+        <h2 class="text-primary">Lista de Leilões</h2>
+    </div>
+    <div class="row">
+        {% for leilao in leiloes %}
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title"><strong>{{ leilao.titulo }}</strong></h2>
+                    <p class="card-text">{{ leilao.descricao }}</p>
+                    <p class="card-text"><strong>Organização:</strong> {{ leilao.organizacao }}</p>
+                    <p class="card-text"><strong>Lance Atual:</strong> {{ leilao.lance_atual }}</p>
+                    <p class="card-text"><strong>Último Lance por Usuário ID:</strong> {{ leilao.ultimo }}</p>
+                    <p class="card-text"><strong>Host por Usuário ID:</strong> {{ leilao.host }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ leilao.status }}</p>
+                    <p class="card-text"><strong>Hora do Último Lance:</strong> {{ leilao.hora_ultimo }}</p>
+                    <a href="/leilao/{{ leilao.id }}" class="btn btn-primary">Ver Detalhes</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card-image">
+                <img src="https://via.placeholder.com/300" alt="Placeholder Image">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

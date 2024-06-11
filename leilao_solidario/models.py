@@ -17,6 +17,15 @@ class Usuario(db.Model, UserMixin):
     senha: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
     permissao: so.Mapped[str] = so.mapped_column(sa.String, nullable=True, default='visualizador')
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'senha': self.senha,
+            'permissao': self.permissao,
+        }
+
 class Leilao(db.Model):
     id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
     titulo: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
@@ -29,3 +38,17 @@ class Leilao(db.Model):
                                               nullable=False)
     status: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
     hora_ultimo: so.Mapped[datetime] = so.mapped_column(sa.DateTime, nullable=False)
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'titulo': self.titulo,
+            'descricao': self.descricao,
+            'organizacao': self.organizacao,
+            'lance_atual': self.lance_atual,
+            'ultimo': self.ultimo,
+            'host': self.host,
+            'status': self.status,
+            'hora_ultimo': self.hora_ultimo.strftime('%H:%M dia (%d/%m/%Y)') if self.hora_ultimo else None
+        }
+
