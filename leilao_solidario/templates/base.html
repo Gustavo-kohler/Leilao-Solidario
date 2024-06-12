@@ -19,6 +19,9 @@
             {% if current_user.is_authenticated %}
                 <ul>
                     <li>
+                        <a href="{{ url_for('cadastro_leilao.cadastrar_leilao') }}">Novo leilão</a>
+                    </li>
+                    <li>
                         <a href="{{ url_for('leilao.lista_leiloes') }}">Leilões</a>
                     </li>
                     <li>

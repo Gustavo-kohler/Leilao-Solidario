@@ -16,19 +16,19 @@
                 <div class="card-body">
                     <h2 class="card-title"><strong>{{ leilao.titulo }}</strong></h2>
                     <p class="card-text">{{ leilao.descricao }}</p>
-                    <p class="card-text"><strong>Organização:</strong> {{ leilao.organizacao }}</p>
-                    <p class="card-text"><strong>Lance Atual:</strong> {{ leilao.lance_atual }}</p>
-                    <p class="card-text"><strong>Último Lance por Usuário ID:</strong> {{ leilao.ultimo }}</p>
-                    <p class="card-text"><strong>Host por Usuário ID:</strong> {{ leilao.host }}</p>
+                    <p class="card-text"><strong>Organização beneficiária:</strong> {{ leilao.organizacao }}</p>
+                    <p class="card-text"><strong>Dono do leilão:</strong> {{ leilao.host }}</p>
                     <p class="card-text"><strong>Status:</strong> {{ leilao.status }}</p>
-                    <p class="card-text"><strong>Hora do Último Lance:</strong> {{ leilao.hora_ultimo }}</p>
+                    <p class="card-text"><strong>Lance atual:</strong> {{ leilao.lance_atual }}</p>
+                    <p class="card-text"><strong>Feito por:</strong> {{ leilao.ultimo }}</p>
+                    <p class="card-text"><strong>Último lance:</strong> {{ leilao.hora_ultimo }}</p>
                     <a href="/leilao/{{ leilao.id }}" class="btn btn-primary">Ver Detalhes</a>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="card-image">
-                <img src="https://via.placeholder.com/300" alt="Placeholder Image">
+                <img src="{{ leilao.imagem }}" alt="{{ leilao.titulo }}">
             </div>
         </div>
         {% endfor %}

@@ -8,12 +8,17 @@ def reset_db():
     with app.app_context():
         db.create_all()
 
+def add_admin_user():
+    with app.app_context():
+        admin = Usuario(username="admin", email="admin@gmail.com", senha="$2b$12$5YmtHAJ0KJ2rpMV4QsmQUO.hEtB6ved9oM0BgcbfhnaSgrRildWm6", permissao="administrador")
+        db.session.add(admin)
+        db.session.commit()
 
 def add_exemplo_leiloes():
     with app.app_context():
         # Criar usuários
-        usuario1 = Usuario(username="usuario1", email="usuario3@example.com", senha="senha1")
-        usuario2 = Usuario(username="usuario2", email="usuario4@example.com", senha="senha2")
+        usuario1 = Usuario(username="usuario1", email="usuario3@example.com", senha="$2b$12$5YmtHAJ0KJ2rpMV4QsmQUO.hEtB6ved9oM0BgcbfhnaSgrRildWm6")
+        usuario2 = Usuario(username="usuario2", email="usuario4@example.com", senha="$2b$12$5YmtHAJ0KJ2rpMV4QsmQUO.hEtB6ved9oM0BgcbfhnaSgrRildWm6")
 
         db.session.add(usuario1)
         db.session.add(usuario2)
@@ -46,5 +51,5 @@ def add_exemplo_leiloes():
         db.session.add(leilao2)
         db.session.commit()
 
-
+add_admin_user()
 add_exemplo_leiloes()
