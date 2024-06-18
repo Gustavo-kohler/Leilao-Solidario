@@ -14,7 +14,7 @@
             <div>
                 <p>
                     O Leilão Solidário é uma plataforma sem fins lucrativos
-                    que busca provindeciar caminhos para ajudar instituições
+                    que busca providenciar caminhos para ajudar instituições
                     que precisam.
                 </p>
                 <p>
@@ -25,16 +25,18 @@
                     participando em leilões de terceiros!
                 </p>
             </div>
-            <div class="action-container">
-                <div>
-                    <h1>Faça parte!</h1>
-                    <a class="action-a" href="{{ url_for('home.login')}}">Entre</a>
+            {% if not current_user.is_authenticated %}
+                <div class="action-container">
+                    <div>
+                        <h1>Faça parte!</h1>
+                        <a class="action-a" href="{{ url_for('home.login')}}">Entre</a>
+                    </div>
+                    <div>
+                        <h1>Já é membro?</h1>
+                        <a class="action-a" href="{{ url_for('home.register')}}">Cadastre-se</a>
+                    </div>
                 </div>
-                <div>
-                    <h1>Já é membro?</h1>
-                    <a class="action-a" href="{{ url_for('home.register')}}">Cadastre-se</a>
-                </div>
-            </div>
+            {% endif %}
         </div>
     </main>
 </div>

@@ -16,15 +16,13 @@ class Usuario(db.Model, UserMixin):
     username: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
     email: so.Mapped[str] = so.mapped_column(sa.String, unique=True, nullable=False)
     senha: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
-    permissao: so.Mapped[str] = so.mapped_column(sa.String, nullable=True, default='visualizador')
 
     def to_dict(self):
         return {
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'senha': self.senha,
-            'permissao': self.permissao,
+            'senha': self.senha
         }
 
 

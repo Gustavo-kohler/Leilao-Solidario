@@ -29,6 +29,7 @@
     </a>
 </div>
 <div class='leiloes-container'>
+    <!--
     <a href="/" class="leiloes-item">
         <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
         <p class='leilao-titulo'>Titulo 1</p>
@@ -57,6 +58,14 @@
         <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
         <p class='leilao-titulo'>Titulo 1</p>
     </a>
+    -->
+    {% for leilao in leiloes %}
+    <a href="{{ url_for('auction.auction', auction_id=leilao.id) }}" class="leiloes-item">
+        <h1>{{ leilao.image }}</h1>
+        <img src="{{ leilao.imagem }}" class="leilao-img">
+        <p class='leilao-titulo'>{{ leilao.titulo }}</p>
+    </a>
+    {% endfor %}
 </div>
 </main>
 

@@ -27,9 +27,6 @@ def cadastrar_leilao():
     if not current_user.is_authenticated:
         flash('Você precisa estar logado para acessar essa página.', 'alert-danger')
         return redirect(url_for('home.login'))
-    if current_user.permissao == 'visualizador':
-        flash('Você não tem permissão para acessar essa página.', 'alert-danger')
-        return redirect(url_for('home.home'))
     if form_cadastro_leilao.validate_on_submit():
         id = uuid.uuid4().hex[:8]
         if form_cadastro_leilao.imagem.data:
