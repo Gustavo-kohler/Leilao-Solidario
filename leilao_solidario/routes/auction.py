@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, current_app
+from flask import Blueprint, render_template, redirect, url_for, flash, current_app, request
 from flask_login import current_user, login_required
 from leilao_solidario.extensions import db
 from leilao_solidario.models import Leilao, Usuario
@@ -20,21 +20,27 @@ def pegar_imagem(leilao_id):
 def auction(auction_id):
     auction = Leilao.query.get(auction_id)
     host = Usuario.query.get(auction.host)
+    image = pegar_imagem(auction_id)
     form_cancela_leilao = FormCancelAuction()
     form_novo_lance = FormNewBid()
 
-    if form_cancela_leilao.validate_on_submit():
-        auction.status = "canceled"
-        db.session.commit()
-        return redirect(url_for('auction.auction', auction_id=auction_id))
-    if form_novo_lance.validate_on_submit():
-        auction.lance_atual = form_novo_lance.lance.data
-        auction.ultimo = current_user
-        db.session.commit()
-        return redirect(url_for('auction.auction', auction_id=auction_id))
+    if request.method == 'POST':
+        if form_cancela_leilao.validate_on_submit():
+            auction.status = "canceled"
+            db.session.commit()
+            return redirect(url_for('auction.auction', auction_id=auction_id))
+        if form_novo_lance.validate_on_submit():
+            auction.lance_atual = form_novo_lance.lance.data
+            auction.ultimo = current_user
+            db.session.commit()
+            return redirect(url_for('auction.auction', auction_id=auction_id))
 
-    return render_template('auction.html', current_user=current_user, auction=auction, host=host, form_cancela_leilao=form_cancela_leilao, form_novo_lance=form_novo_lance)
-
+    return render_template('auction.html',
+                           current_user=current_user,
+                           auction=auction, host=host,
+                           form_cancela_leilao=form_cancela_leilao,
+                           form_novo_lance=form_novo_lance,
+                           image=image)
 @AUCTION.route('/meusleiloes')
 def meusleiloes():
     if not current_user.is_authenticated:

@@ -6,18 +6,18 @@
     <h1>{{ auction.titulo }}</h1>
     <div class="content">
         <div>
-            {% if auction.status == 'open' %}
+            {% if auction.status == 'ativo' %}
                 <div class="bid-window">
                     <p>Lance Atual</p>
                     <p>R$ {{ auction.lance_atual }}</p>
-                    <p>Feito por: {{host.name}}</p>
+                    <p>Feito por: {{host.username}}</p>
                 </div>
                 <p>Tempo restante: {{auction.time_left}}</p>
             {% elif auction.status == 'ended' %}
                 <div class="bid-window">
                     <p>Arrematado!</p>
                     <p>R$ {{ auction.lance_atual }}</p>
-                    <p>Feito por: {{host.name}}</p>
+                    <p>Feito por: {{host.username}}</p>
                 </div>
                 <p>Leilão finalizado!</p>
             {% else %}
@@ -25,15 +25,22 @@
                     <p>Leilão cancelado</p>
                 </div>
             {% endif %}
-            
-            {% if auction.status == 'open' and host != current_user %}
-                {{ form_novo_lance.lance.label(class="sr-only") }}
-                {{ form_novo_lance.lance(placeholder="Lance", class="form-control") }}
-                {{ form_novo_lance.botao_submit_fazer_lance(class="btn btn-primary") }}
-            {% elif auction.status == 'open' and host == current_user %}
-                {{ form_cancela_leilao.botao_cancelar(class="btn btn-danger") }}
+
+            {% if auction.status == 'ativo' and host != current_user %}
+                <form method="POST" action="{{ url_for('auction.auction', auction_id=auction.id) }}">
+                    {{ form_novo_lance.lance.label(class="sr-only") }}
+                    {{ form_novo_lance.lance(placeholder="Lance", class="form-control") }}
+                    {{ form_novo_lance.botao_submit_fazer_lance(class="btn btn-primary") }}
+                </form>
+            {% elif auction.status == 'ativo' and host == current_user %}
+                <form method="POST" action="{{ url_for('auction.auction', auction_id=auction.id) }}">
+                    {{ form_cancela_leilao.botao_cancelar(class="btn btn-danger") }}
+                </form>
             {% endif %}
         </div>
+
+        <img src="{{ image }}" class="leilao-img">
+
         <div>
             <img src="">
             <p>{{ auction.descricao }}</p>
