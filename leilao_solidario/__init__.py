@@ -13,7 +13,7 @@ def create_app():
     bcrypt.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
-    with app.app_context():
-        db.create_all()
     registrar_blueprints(app)
     return app
+
+

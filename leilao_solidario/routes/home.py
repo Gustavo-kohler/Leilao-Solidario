@@ -10,6 +10,7 @@ HOME = Blueprint('home', __name__)
 
 
 @HOME.route('/')
+@HOME.route('/home')
 def home():
     return render_template('home.html')
 
@@ -33,7 +34,7 @@ def register():
 @HOME.route('/login', methods=['GET','POST'])
 def login():
     form_login = FormLogin()
-    if form_login.validate_on_submit() and 'botao_submit_login' in request.form:
+    if form_login.validate_on_submit():
         usuario = Usuario.query.filter_by(email=form_login.email.data).first()
         if not usuario:
             flash(f'Não há conta cadastrada com o email: {form_login.email.data}.', 'alert-danger')
