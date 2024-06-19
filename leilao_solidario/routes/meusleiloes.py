@@ -32,11 +32,6 @@ def leiloes_que_participo():
     leiloes_dict = [leilao.to_dict() for leilao in leiloes]
 
     for leilao in leiloes_dict:
-        if leilao['ultimo']:
-            leilao['ultimo'] = Usuario.query.get(leilao['ultimo']).username
-        else:
-            leilao['ultimo'] = 'Nenhum'
-        leilao['host'] = Usuario.query.get(leilao['host']).username
         leilao['imagem'] = pegar_imagem(leilao['id'])
         leilao['imagem'] = '../' + leilao['imagem']
 
@@ -48,7 +43,13 @@ def leiloes_que_participo():
 def leiloes_ativos():
     leiloes = Leilao.query.filter_by(host=current_user.get_id()).filter_by(status="active").all()
 
-    return render_template('leiloes_ativos.html', current_user=current_user, leiloes=leiloes)
+    leiloes_dict = [leilao.to_dict() for leilao in leiloes]
+
+    for leilao in leiloes_dict:
+        leilao['imagem'] = pegar_imagem(leilao['id'])
+        leilao['imagem'] = '../' + leilao['imagem']
+
+    return render_template('leiloes_ativos.html', current_user=current_user, leiloes=leiloes_dict)
 
 
 @LEILOES_BP.route('/leiloes-finalizados')
@@ -56,4 +57,10 @@ def leiloes_ativos():
 def leiloes_finalizados():
     leiloes = Leilao.query.filter_by(host=current_user.get_id()).filter_by(status="canceled").all()
 
-    return render_template('leiloes_finalizados.html', current_user=current_user, leiloes=leiloes)
+    leiloes_dict = [leilao.to_dict() for leilao in leiloes]
+
+    for leilao in leiloes_dict:
+        leilao['imagem'] = pegar_imagem(leilao['id'])
+        leilao['imagem'] = '../' + leilao['imagem']
+
+    return render_template('leiloes_finalizados.html', current_user=current_user, leiloes=leiloes_dict)
