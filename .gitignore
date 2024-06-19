@@ -50,4 +50,5 @@ Thumbs.db
 *.wmv
 
 venv/
-
+leilao_solidario/static/imagens_leilao
+instance
