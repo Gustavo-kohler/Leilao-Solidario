@@ -39,7 +39,11 @@
             {% endif %}
         </div>
 
-        <img src="{{ image }}" class="leilao-img">
+        {% if image == None %}
+            <img src="https://placehold.co/800x800" class="leilao-img">
+        {% else %}
+            <img src="{{ image }}" class="leilao-img">
+        {% endif %}
 
         <div>
             <img src="">
