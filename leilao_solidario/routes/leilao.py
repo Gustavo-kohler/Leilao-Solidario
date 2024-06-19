@@ -31,5 +31,6 @@ def lista_leiloes():
             leilao['ultimo'] = 'Nenhum'
         leilao['host'] = Usuario.query.get(leilao['host']).username
         leilao['imagem'] = pegar_imagem(leilao['id'])
+        print(leilao['imagem'])
     return render_template('lista_leiloes.html', leiloes=leiloes_dict)
 

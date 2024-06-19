@@ -22,13 +22,17 @@
                     <p class="card-text"><strong>Lance atual:</strong> {{ leilao.lance_atual }}</p>
                     <p class="card-text"><strong>Feito por:</strong> {{ leilao.ultimo }}</p>
                     <p class="card-text"><strong>Último lance:</strong> {{ leilao.hora_ultimo }}</p>
-                    <a href="/leilao/{{ leilao.id }}" class="btn btn-primary">Ver Detalhes</a>
+                    <a href="{{ url_for('auction.auction', auction_id=leilao.id) }}" class="btn btn-primary">Ver Detalhes</a>
                 </div>
             </div>
         </div>
         <div class="col">
             <div class="card-image">
-                <img src="{{ leilao.imagem }}" alt="{{ leilao.titulo }}">
+                {% if leilao.imagem == None %}
+                    <img src="https://placehold.co/800x800" alt="{{ leilao.titulo }}">
+                {% else %}
+                    <img src="{{ leilao.imagem }}" alt="{{ leilao.titulo }}">
+                {% endif %}
             </div>
         </div>
         {% endfor %}
