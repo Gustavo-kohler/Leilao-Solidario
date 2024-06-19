@@ -28,11 +28,7 @@
         </div>
         <div class="col">
             <div class="card-image">
-                {% if leilao.imagem == None %}
-                    <img src="https://placehold.co/800x800" alt="{{ leilao.titulo }}">
-                {% else %}
-                    <img src="{{ leilao.imagem }}" alt="{{ leilao.titulo }}">
-                {% endif %}
+                <img src="{{ leilao.imagem }}" alt="{{ leilao.titulo }}">
             </div>
         </div>
         {% endfor %}

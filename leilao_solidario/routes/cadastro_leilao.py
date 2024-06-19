@@ -40,7 +40,7 @@ def cadastrar_leilao():
             lance_atual=0,
             host=current_user.id,
             ultimo=None,
-            status='ativo',
+            status='active',
             hora_ultimo=datetime.now()
         )
         db.session.add(leilao)

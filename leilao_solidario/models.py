@@ -38,7 +38,7 @@ class Leilao(db.Model):
     lance_atual: so.Mapped[int] = so.mapped_column(sa.Integer, nullable=False)
     ultimo: so.Mapped[int] = so.mapped_column(sa.Integer, sa.ForeignKey("usuario.id", name="fk_ultimo_usuario"), nullable=True, default=None)
     host: so.Mapped[int] = so.mapped_column(sa.Integer, sa.ForeignKey("usuario.id", name="fk_host"),nullable=False)
-    status: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
+    status: so.Mapped[str] = so.mapped_column(sa.String, nullable=False, default="active")
     hora_ultimo: so.Mapped[datetime] = so.mapped_column(sa.DateTime)
 
     def to_dict(self):
@@ -54,3 +54,10 @@ class Leilao(db.Model):
             'hora_ultimo': self.hora_ultimo.strftime('%H:%M dia (%d/%m/%Y)') if self.hora_ultimo else None
         }
 
+class UsuarioRelLeilao(db.Model):
+    id: so.Mapped[str] = so.mapped_column(sa.String, primary_key=True, default=generate_hex_id)
+    id_usuario: so.Mapped[str] = so.mapped_column(sa.String, db.ForeignKey('usuario.id'), nullable=False)
+    id_leilao: so.Mapped[str] = so.mapped_column(sa.String, db.ForeignKey('leilao.id'), nullable=False)
+
+    def __repr__(self):
+        return f'<UsuarioRelLeilao> {self.id_leilao}'

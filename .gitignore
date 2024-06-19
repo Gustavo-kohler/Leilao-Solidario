@@ -51,4 +51,4 @@ Thumbs.db
 
 venv/
 leilao_solidario/static/imagens_leilao
-instance
+instance/
