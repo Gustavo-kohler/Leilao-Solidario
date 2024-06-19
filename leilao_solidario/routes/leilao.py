@@ -21,7 +21,6 @@ def pegar_imagem(leilao_id):
 @LEILAO.route('/leiloes')
 def lista_leiloes():
     leiloes = Leilao.query.all()
-    print(current_user.id)
     leiloes_dict = [leilao.to_dict() for leilao in leiloes if leilao.host != current_user.id]
 
     for leilao in leiloes_dict:

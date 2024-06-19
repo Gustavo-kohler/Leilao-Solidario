@@ -13,12 +13,10 @@
 {% block grid %}
 <div class='leiloes-container'>
     {% for leilao in leiloes %}
-    {% if leilao.status == 'active' %}
-    <a href='/' class="leiloes-item">
-        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
-        <p class='leilao-titulo'>{{ leilao.titulo }}</p>
-    </a>
-    {% endif %}
-    {%endfor%} 
+        <a href="{{ url_for('auction.auction', auction_id=leilao.id) }}" class="leiloes-item">
+            <img src="{{ leilao.imagem }}" alt="{{ leilao.titulo }}" class="leilao-img">
+            <p class='leilao-titulo'>{{ leilao.titulo }}</p>
+        </a>
+    {% endfor %}
 </div>
 {% endblock %}
