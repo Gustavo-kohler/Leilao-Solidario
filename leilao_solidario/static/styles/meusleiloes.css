@@ -11,7 +11,7 @@ body {
 
 a {
     text-decoration: none;
-    color: white;
+    color: rgba(0, 0, 0, 0.85);
 }
 
 .topbar {
@@ -131,6 +131,7 @@ a {
     border-radius: .5rem;
     transition: .5s;
     text-align: center;
+    color: white;
 }
 
 .botao:hover {
