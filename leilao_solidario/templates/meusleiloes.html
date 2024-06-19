@@ -26,7 +26,7 @@
         <a href="/meusleiloes/leiloes-finalizados" class="ind">Meus leilões finalizados</a>
     </div>
     {% endblock %}
-    <a href="/" class="botao">
+    <a href="{{ url_for('cadastro_leilao.cadastrar_leilao') }}" class="botao">
         <p>Novo leilão</p>
     </a>
 </div>
