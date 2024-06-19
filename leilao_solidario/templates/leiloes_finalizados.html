@@ -1,0 +1,24 @@
+{% extends "meusleiloes.html" %}
+
+{% block selected %}Leilões finalizados{% endblock %}
+
+{% block indices %}
+<div class="indices">
+    <a href="/meusleiloes/leiloes-que-participo" class="ind">Leilões que participo</a>
+    <a href="/meusleiloes/leiloes-ativos" class="ind">Meus leilões ativos</a>
+    <a href="/meusleiloes/leiloes-finalizados" class="ind-atual">Meus leilões finalizados</a>
+</div>
+{% endblock %}
+
+{% block grid %}
+<div class='leiloes-container'>
+    {% for leilao in leiloes %}
+    {% if leilao.status == 'ended' %}
+    <a href='/' class="leiloes-item">
+        <img src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Velkoz_0.jpg" class="leilao-img">
+        <p class='leilao-titulo'>{{ leilao.titulo }}</p>
+    </a>
+    {% endif %}
+    {%endfor%} 
+</div>
+{% endblock %}

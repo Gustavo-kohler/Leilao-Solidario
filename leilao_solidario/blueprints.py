@@ -10,3 +10,6 @@ def registrar_blueprints(app):
 
     from .routes.cadastro_leilao import CADASTRO_LEILAO
     app.register_blueprint(CADASTRO_LEILAO)
+
+    from .routes.meusleiloes import LEILOES_BP
+    app.register_blueprint(LEILOES_BP)
