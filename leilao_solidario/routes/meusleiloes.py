@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for
 from flask_login import current_user, login_required
 from leilao_solidario.extensions import db
-from leilao_solidario.models import Leilao, Usuario, UsuarioRelLeilao
+from leilao_solidario.models import Leilao, Usuario
 
 
 LEILOES_BP = Blueprint('meusleiloes', __name__, url_prefix='/meusleiloes')
