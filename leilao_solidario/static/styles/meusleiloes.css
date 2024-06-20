@@ -159,6 +159,10 @@ a {
     margin: 0;
 }
 
+.leiloes-item:hover .leilao-titulo {
+    padding:0;
+}
+
 .leiloes-item > p {
     height: 20%;
 }
@@ -171,11 +175,23 @@ a {
 
 
 .leilao-titulo{
+    display:flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     font-size: 1.2rem;
     padding: 0.3rem;
-    color: black;
+    color: rgb(30, 30, 30); 
 }
+
+.sem-leiloes{
+    text-align: center;
+    margin: 6rem;
+    font-size: 1.4rem;
+    padding: 0.3rem;
+    color: rgb(76, 76, 76);
+}
+
 
 @media (max-width: 1000px) {
     .leiloes-container {
@@ -189,7 +205,7 @@ a {
 
 }
 
-@media (max-width: 880px) {
+@media (max-width: 1002px) {
 
     .dropdown {
         display: flex

@@ -14,16 +14,18 @@
             <div class="caret"></div>
         </div>
         <ul class="menu">
-            <a href="/meusleiloes/leiloes-que-participo"><li>Leilões que participo</li></a>
-            <a href="/meusleiloes/leiloes-ativos"><li>Meus leilões ativos</li></a>
-            <a href="/meusleiloes/leiloes-finalizados"><li>Meus leilões finalizados</li></a>
+            <a href="{{ url_for('meusleiloes.leiloes_ativos') }}"><li>Leilões ativos</li></a>
+            <a href="{{ url_for('meusleiloes.leiloes_finalizados') }}"><li>Leilões finalizados</li></a>
+            <a href="{{ url_for('meusleiloes.meusleiloes_ativos') }}"><li>Meus leilões ativos</li></a>
+            <a href="{{ url_for('meusleiloes.meusleiloes_finalizados') }}"><li>Meus leilões finalizados</li></a>
         </ul>
     </div>
     {% block indices %}
     <div class="indices">
-        <a href="/meusleiloes/leiloes-que-participo" class="ind">Leilões que participo</a>
-        <a href="/meusleiloes/leiloes-ativos" class="ind">Meus leilões ativos</a>
-        <a href="/meusleiloes/leiloes-finalizados" class="ind">Meus leilões finalizados</a>
+        <a href="{{ url_for('meusleiloes.leiloes_ativos') }}" class="ind">Leilões ativos</a>
+        <a href="{{ url_for('meusleiloes.leiloes_finalizados') }}" class="ind">Leilões finalizados</a>
+        <a href="{{ url_for('meusleiloes.meusleiloes_ativos') }}" class="ind">Meus leilões ativos</a>
+        <a href="{{ url_for('meusleiloes.meusleiloes_finalizados') }}" class="ind">Meus leilões finalizados</a>
     </div>
     {% endblock %}
     <a href="{{ url_for('cadastro_leilao.cadastrar_leilao') }}" class="botao">

@@ -23,25 +23,12 @@ def meusleiloes():
     return render_template('meusleiloes.html', current_user=current_user)
 
 
-@LEILOES_BP.route('/leiloes-que-participo')
-@login_required
-def leiloes_que_participo():
-
-    leiloes = db.session.query(Leilao).join(UsuarioRelLeilao).filter(UsuarioRelLeilao.id_usuario == current_user.id).all()
-
-    leiloes_dict = [leilao.to_dict() for leilao in leiloes]
-
-    for leilao in leiloes_dict:
-        leilao['imagem'] = pegar_imagem(leilao['id'])
-        leilao['imagem'] = '../' + leilao['imagem']
-
-    return render_template('leiloes_que_participo.html', current_user=current_user, leiloes=leiloes_dict)
-
-
 @LEILOES_BP.route('/leiloes-ativos')
 @login_required
 def leiloes_ativos():
-    leiloes = Leilao.query.filter_by(host=current_user.get_id()).filter_by(status="active").all()
+
+    leiloes = db.session.query(Leilao).filter_by(status="active").join(UsuarioRelLeilao)\
+        .filter(UsuarioRelLeilao.id_usuario == current_user.id).all()
 
     leiloes_dict = [leilao.to_dict() for leilao in leiloes]
 
@@ -55,7 +42,9 @@ def leiloes_ativos():
 @LEILOES_BP.route('/leiloes-finalizados')
 @login_required
 def leiloes_finalizados():
-    leiloes = Leilao.query.filter_by(host=current_user.get_id()).filter_by(status="canceled").all()
+
+    leiloes = db.session.query(Leilao).filter_by(status="ended").join(UsuarioRelLeilao)\
+        .filter(UsuarioRelLeilao.id_usuario == current_user.id).all()
 
     leiloes_dict = [leilao.to_dict() for leilao in leiloes]
 
@@ -64,3 +53,31 @@ def leiloes_finalizados():
         leilao['imagem'] = '../' + leilao['imagem']
 
     return render_template('leiloes_finalizados.html', current_user=current_user, leiloes=leiloes_dict)
+
+
+@LEILOES_BP.route('/meusleiloes-ativos')
+@login_required
+def meusleiloes_ativos():
+    leiloes = Leilao.query.filter_by(host=current_user.get_id()).filter_by(status="active").all()
+
+    leiloes_dict = [leilao.to_dict() for leilao in leiloes]
+
+    for leilao in leiloes_dict:
+        leilao['imagem'] = pegar_imagem(leilao['id'])
+        leilao['imagem'] = '../' + leilao['imagem']
+
+    return render_template('meusleiloes_ativos.html', current_user=current_user, leiloes=leiloes_dict)
+
+
+@LEILOES_BP.route('/meusleiloes-finalizados')
+@login_required
+def meusleiloes_finalizados():
+    leiloes = Leilao.query.filter_by(host=current_user.get_id()).filter_by(status="ended").all()
+
+    leiloes_dict = [leilao.to_dict() for leilao in leiloes]
+
+    for leilao in leiloes_dict:
+        leilao['imagem'] = pegar_imagem(leilao['id'])
+        leilao['imagem'] = '../' + leilao['imagem']
+
+    return render_template('meusleiloes_finalizados.html', current_user=current_user, leiloes=leiloes_dict)

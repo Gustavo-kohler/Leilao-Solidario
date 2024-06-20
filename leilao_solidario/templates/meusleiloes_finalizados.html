@@ -1,19 +1,19 @@
 {% extends "meusleiloes.html" %}
 
-{% block selected %}Leilões ativos{% endblock %}
+{% block selected %}Meus leilões finalizados{% endblock %}
 
 {% block indices %}
 <div class="indices">
-    <a href="{{ url_for('meusleiloes.leiloes_ativos') }}" class="ind-atual">Leilões ativos</a>
+    <a href="{{ url_for('meusleiloes.leiloes_ativos') }}" class="ind">Leilões ativos</a>
     <a href="{{ url_for('meusleiloes.leiloes_finalizados') }}" class="ind">Leilões finalizados</a>
     <a href="{{ url_for('meusleiloes.meusleiloes_ativos') }}" class="ind">Meus leilões ativos</a>
-    <a href="{{ url_for('meusleiloes.meusleiloes_finalizados') }}" class="ind">Meus leilões finalizados</a>
+    <a href="{{ url_for('meusleiloes.meusleiloes_finalizados') }}" class="ind-atual">Meus leilões finalizados</a>
 </div>
 {% endblock %}
 
 {% block grid %}
 {% if not leiloes %}
-<p class="sem-leiloes">Nenhum leilão ativo encontrado</p>
+<p class="sem-leiloes">Nenhum leilão finalizado encontrado</p>
 {% endif %}
 <div class='leiloes-container'>
     {% for leilao in leiloes %}
