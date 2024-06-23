@@ -1,35 +1,45 @@
-.main-wrapper {
-    height: calc(100vh - 6rem);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--sec-window);
-}
-
 .container {
-    max-width: 50rem;
     display: flex;
-    background-color: var(--window);
-    border-radius: .5rem;
+    margin-top: 3rem;
 }
 
 .section-container {
-    width: 50%;
-    height: 25rem;
+    height: 20rem;
+}
+
+.text-container {
+    width: 60%;
+    padding-right: 2rem;
+}
+
+.img-section-container {
+    width: 40%;
+}
+
+.img-section-container > img {
+    border-radius: 1rem;
+}
+
+.img-section-container > img:hover {
+    border-radius: .5rem;
+    outline: 3px solid var(--main-color);
 }
 
 .image-container {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: .5rem;
 }
 
-.text-container {
-    padding: 1rem;
+h1 {
+    margin-bottom: 1rem;
 }
 
-p {
+.home-title {
+    font-size: 3rem;
+}
+
+.home-subtitles {
     font-size: 1rem;
     margin-bottom: 1rem;
 }
@@ -44,4 +54,80 @@ p {
 
 .action-a {
     color: black;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 2rem;
+    gap: 2rem;
+}
+
+.grid-item {
+    background-color: var(--main-color);
+    color: white;
+    border-radius: .5rem;
+    margin-top: 1rem;
+    transition: .5s;
+    height: 6rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.grid-item:hover {
+    margin-top: 0rem;
+    margin-bottom: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.icon-wrapper {
+    width: 2rem;
+    height: 2rem;
+}
+
+.grid-item > p {
+    font-size: .8rem;
+    width: 80%;
+}
+
+@media (max-width: 72rem) {
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 60rem) {
+    .container {
+        flex-direction: column-reverse;
+        margin-top: 1rem;
+    }
+
+    .section-container {
+        height: auto;
+    }
+
+    .text-container {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .img-section-container {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 35rem) {
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: .5rem;
+    }
+
+    .home-title {
+        font-size: 2rem;
+    }
 }

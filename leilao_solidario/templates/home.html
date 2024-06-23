@@ -5,38 +5,58 @@
 {% endblock %}
 
 {% block body %}
-<div class="main-wrapper">
-    <main class="container">
-        <div class="section-container">
-            <img src="{{ url_for('static', filename='images/home_image.jpg') }}" class="image-container">
+<div class="wrapper-doc">
+    <main>
+        <div class="container">
+            <div class="section-container text-container">
+                <div>
+                    <h1 class="home-title">
+                        Venha contribuir com causas sociais e ganhar brindes incríveis
+                    </h1>
+                    <p class="home-subtitles">
+                        O Leilão Solidário é uma plataforma sem fins lucrativos
+                        que busca providenciar caminhos para ajudar instituições
+                        que precisam.
+                    </p>
+                </div>
+            </div>
+            <div class="section-container img-section-container">
+                <img src="{{ url_for('static', filename='images/home_image.jpg') }}" class="image-container">
+            </div>
         </div>
-        <div class="section-container text-container">
-            <div>
+        <div class="grid">
+            <div class="grid-item">
+                <div class="icon-wrapper">
+                    <img src="{{ url_for('static', filename='images/handshake_icon.png') }}" class="image-container">
+                </div>
                 <p>
-                    O Leilão Solidário é uma plataforma sem fins lucrativos
-                    que busca providenciar caminhos para ajudar instituições
-                    que precisam.
-                </p>
-                <p>
-                    Todo dinheiro dos leilões será enviado a essas instituições.
-                </p>
-                <p>
-                    Então venha participar, leiloando itens ou
-                    participando em leilões de terceiros!
+                    Participe como <strong>licitante</strong> nos leilões e ganhe <strong>prêmios incríveis</strong>!
                 </p>
             </div>
-            {% if not current_user.is_authenticated %}
-                <div class="action-container">
-                    <div>
-                        <h1>Faça parte!</h1>
-                        <a class="action-a" href="{{ url_for('home.login')}}">Entre</a>
-                    </div>
-                    <div>
-                        <h1>Já é membro?</h1>
-                        <a class="action-a" href="{{ url_for('home.register')}}">Cadastre-se</a>
-                    </div>
+            <div class="grid-item">
+                <div class="icon-wrapper">
+                    <img src="{{ url_for('static', filename='images/hammer_icon.png') }}" class="image-container">
                 </div>
-            {% endif %}
+                <p>
+                    Participe como <strong>leiloeiro</strong> e garanta auxílio para sua instituição solidária!
+                </p>
+            </div>
+            <div class="grid-item">
+                <div class="icon-wrapper">
+                    <img src="{{ url_for('static', filename='images/cycle_icon.png') }}" class="image-container">
+                </div>
+                <p>
+                    Todo dinheiro dos leilões será enviado a <strong>instituições solidárias</strong>.
+                </p>
+            </div>
+            <div class="grid-item">
+                <div class="icon-wrapper">
+                    <img src="{{ url_for('static', filename='images/eighteen_icon.png') }}" class="image-container">
+                </div>
+                <p>
+                    São permitidos <strong>apenas adultos</strong> no Leilão Solidário.
+                </p>
+            </div>
         </div>
     </main>
 </div>

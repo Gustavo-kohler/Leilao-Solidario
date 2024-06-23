@@ -1,116 +1,55 @@
-/* Estilização principal do container */
-.container {
-    max-width: 60rem;
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.leiloes-title {
+    margin-bottom: 2rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid grey;
+}
+
+.leilao-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: .4rem;
+    background-color: #d4e1ff;
+    border-radius: .2rem;
+}
+
+.leilao-container:hover {
+    outline: 2px solid var(--main-color);
+}
+
+.image-wrapper {
+    height: 12rem;
+    width: 12rem;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: .2rem;
+}
+
+.text-wrapper {
+    height: 12rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #e0f7fa; /* Azul claro */
-    border-radius: 1.5rem;
-    padding: 2rem;
-    margin: auto;
-    margin-top: 2rem; /* Adiciona espaçamento acima do container */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-}
-
-/* Centraliza o conteúdo e dá espaçamento */
-.text-center {
-    margin-bottom: 0.6rem;
-    width: 100%;
-}
-
-/* Estilização do título principal */
-.text-primary {
-    color: #0383a6; /* ou qualquer cor que desejar */
-    font-size: 2.5rem;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* Estilização das linhas */
-.row {
-    display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
 }
 
-/* Estilização das colunas das cards */
-.col {
-    flex: 0 0 48%; /* Cada coluna ocupa aproximadamente 48% da largura da linha */
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1.5rem; /* Adiciona espaçamento abaixo de cada card */
+.leilao-title {
+    font-size: 2rem;
 }
 
-/* Estilização das cards */
-.card {
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 1.25rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin-top: 20px; /* Adiciona 20px de espaçamento superior */
-}
-
-/* Estilização do corpo das cards */
-.card-body {
-    padding: 3rem;
-}
-
-.card-image {
-    flex: 0 0 300px;
-    height: 300px;
-    background-color: #e0f7fa; /* Azul claro */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin-top: 55px; /* Adiciona 20px de espaçamento superior */
-
-}
-
-.card-image img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-}
-
-/* Estilização do título das cards */
-.card-title {
+.leilao-org {
     font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    text-align: center;
 }
 
-/* Estilização do texto das cards */
-.card-text {
-    font-size: 1rem;
-    color: #6c757d;
-    margin-bottom: 0.5rem;
-
-}
-
-/* Estilização do botão dentro das cards */
-.btn-primary {
-    background-color: #03519e;
-    border-color: #007bff;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border-radius: 0.25rem;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.btn-primary:hover {
-    background-color: #a8d2ff;
-    color: #003063;
-    transform: scale(1.05);
-}
-
-.btn-primary:active {
-    background-color: #00251a;
-    transform: scale(1);
+.leilao-org-desc {
+    font-size: .8rem;
 }

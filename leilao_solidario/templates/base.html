@@ -5,19 +5,20 @@
     <title>Leilão Solidário</title>
     <link href="{{ url_for('static', filename='styles/main.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='styles/navbar.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles/alerts.css') }}" rel="stylesheet">
     {% block head %}
     {% endblock %}
 
 </head>
 <body>
-    <header>
+    <header class="wrapper-doc">
         <a href="{{ url_for('home.home') }}" class="logo-wrapper">
             <!-- {{ url_for('static', filename='images/home_image.jpg') }} -->
             <img src="{{ url_for('static', filename='images/logo_leilao.png') }}" class="logo-image" alt="Logo">
         </a>
         <nav>
             {% if current_user.is_authenticated %}
-                <ul>
+                <ul class="navbar-wide">
                     <li>
                         <a href="{{ url_for('cadastro_leilao.cadastrar_leilao') }}">Novo leilão</a>
                     </li>
@@ -35,7 +36,7 @@
                     </li>
                 </ul>
             {% else %}
-                <ul>
+                <ul class="navbar-wide">
                     <li>
                         <a href="{{ url_for('home.login')}}">Login</a>
                     </li>
@@ -44,12 +45,29 @@
                     </li>
                 </ul>
             {% endif %}
+            <button class="menu-wrapper ham-button">
+                <img src="{{ url_for('static', filename='images/menu_icon.png') }}" class="menu">
+            </button>
         </nav>
     </header>
+    {% if current_user.is_authenticated %}
+        <div class="wrapper-doc navbar-dropdown">
+            <a href="{{ url_for('cadastro_leilao.cadastrar_leilao') }}" class="navbar-dropdown-a">Novo leilão</a>
+            <a href="{{ url_for('leilao.lista_leiloes') }}" class="navbar-dropdown-a">Leilões</a>
+            <a href="{{ url_for('auction.meusleiloes') }}" class="navbar-dropdown-a">Meus leilões</a>
+            <a href="" class="navbar-dropdown-a">Perfil</a>
+            <a href="{{ url_for('home.sair') }}" class="navbar-dropdown-a">Encerrar sessão</a>
+        </div>
+    {% else %}
+        <div class="wrapper-doc navbar-dropdown">
+            <a href="{{ url_for('home.login')}}" class="navbar-dropdown-a">Login</a>
+            <a href="{{ url_for('home.register')}}" class="navbar-dropdown-a">Criar Conta</a>
+        </div>
+    {% endif %}
     {% with mensagens = get_flashed_messages(with_categories=True) %}
         {% if mensagens %}
             {% for categoria, mensagem in mensagens %}
-                <div class="alert {{ categoria }}">
+                <div class="wrapper-doc alert {{ categoria }}">
                     {{ mensagem }}
                 </div>
             {% endfor %}
@@ -60,6 +78,6 @@
 
     {% block scripts %}{% endblock %}
 
-
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/navmenu.js') }}"></script>
 </body>
 </html>

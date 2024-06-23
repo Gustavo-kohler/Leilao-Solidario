@@ -2,7 +2,7 @@
 
 :root {
     --main-color: #2a73ff;
-    --window: #add8e6;
+    --window: #fff;
     --sec-window: #ddebf0;
 }
 
@@ -12,4 +12,10 @@
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
 }
+
+.wrapper-doc {
+    width: 70%;
+    margin: 0 auto;
+}
+
 
