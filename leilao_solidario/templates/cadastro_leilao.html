@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block head %}
-<link href="{{ url_for('static', filename='styles/cadastro_leilao.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='styles/form-box.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-<div class="main-wrapper">
+<div class="wrapper-doc">
     <form method="POST" action="" class="container" enctype="multipart/form-data">
         {{ form_cadastro_leilao.csrf_token }}
         <h1 class="form-title">Cadastro de Leilão</h1>
 
         <div class="form-group">
-            <label class="form-control-label">Nome</label>
+            <label class="form-control-label">Nome do leilão</label>
             {% if form_cadastro_leilao.titulo.errors %}
                 {{ form_cadastro_leilao.titulo(class="form-control is-invalid") }}
                 <div class="invalid-feedback">

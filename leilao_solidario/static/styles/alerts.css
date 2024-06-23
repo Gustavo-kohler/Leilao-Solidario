@@ -1,0 +1,17 @@
+
+.alert {
+    text-align: center;
+    padding: 1rem;
+    border-radius: .5rem;
+    margin-bottom: 1rem;
+}
+
+.alert-success {
+    background-color: #9af59c;
+    border: 1px solid #4ea350;
+}
+
+.alert-danger {
+    background-color: #f0bbbb;
+    border: 1px solid #b83737;
+}

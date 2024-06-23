@@ -1,7 +1,6 @@
 header {
     height: 6rem;
     display: flex;
-    padding: 0 2rem;
     justify-content: space-between;
     align-items: center;
     background-color: var(--window);
@@ -26,23 +25,82 @@ header {
     object-fit: contain;
 }
 
-nav > ul{
+.navbar-wide{
     display: flex;
-    gap: 1rem;
     align-items: center;
     justify-content: space-between;
     list-style: none;
+    gap: 1rem;
 }
 
-nav > ul > li > a{
-    color: black;
+.navbar-wide > li > a{
+    color: white;
+    background: var(--main-color);
+    padding: .5rem 1rem;
+    border-radius: .3rem;
     font-size: 1rem;
     text-decoration: none;
     border-bottom: 0.15rem solid transparent;
     transition: 0.5s;
 }
 
-nav > ul > li > a:hover{
-    border-color: var(--main-color);
+.navbar-wide > li > a:hover{
+    color: var(--main-color);
+    outline: 0.1rem solid var(--main-color);
+    background: white;
 }
 
+.navbar-dropdown {
+    display: none;
+    flex-direction: column;
+    list-style: none;
+    gap: .5rem;
+}
+
+.navbar-dropdown-a {
+    color: white;
+    padding: 1rem;
+    cursor: pointer;
+    background: var(--main-color);
+    text-align: center;
+    text-decoration: none;
+}
+
+.navbar-dropdown-a:hover {
+    color: var(--main-color);
+    outline: 0.1rem solid var(--main-color);
+    background: white;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+.menu-wrapper {
+    width: 3rem;
+    height: 3rem;
+    display: none;
+    cursor: pointer;
+}
+
+.menu {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 61rem) {
+
+    .menu-click {
+        display: flex;
+    }
+
+    .menu-wrapper {
+        display: block;
+    }
+
+    .navbar-wide{
+        display: none;
+    }
+}

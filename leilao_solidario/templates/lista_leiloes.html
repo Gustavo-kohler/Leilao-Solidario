@@ -5,32 +5,27 @@
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="text-center">
-        <h2 class="text-primary">Lista de Leilões</h2>
+<div class="wrapper-doc">
+    <div>
+        <h1 class="leiloes-title">Lista de Leilões</h1>
     </div>
-    <div class="row">
+    <div class="leiloes-container">
         {% for leilao in leiloes %}
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="card-title"><strong>{{ leilao.titulo }}</strong></h2>
-                    <p class="card-text">{{ leilao.descricao }}</p>
-                    <p class="card-text"><strong>Organização beneficiária:</strong> {{ leilao.organizacao }}</p>
-                    <p class="card-text"><strong>Dono do leilão:</strong> {{ leilao.host }}</p>
-                    <p class="card-text"><strong>Status:</strong> {{ leilao.status }}</p>
-                    <p class="card-text"><strong>Lance atual:</strong> {{ leilao.lance_atual }}</p>
-                    <p class="card-text"><strong>Feito por:</strong> {{ leilao.ultimo }}</p>
-                    <p class="card-text"><strong>Último lance:</strong> {{ leilao.hora_ultimo }}</p>
-                    <a href="{{ url_for('auction.auction', auction_id=leilao.id) }}" class="btn btn-primary">Ver Detalhes</a>
+            <a href="{{ url_for('auction.auction', auction_id=leilao.id) }}" class="leilao-container">
+                <div class="image-wrapper">
+                    <img src="{{ leilao.imagem }}" alt="{{ leilao.titulo }}" class="image">
                 </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card-image">
-                <img src="{{ leilao.imagem }}" alt="{{ leilao.titulo }}">
-            </div>
-        </div>
+                <div  class="text-wrapper">
+                    <div>
+                        <h2 class="leilao-title"><strong>{{ leilao.titulo }}</strong></h2>
+                        <p>{{ leilao.descricao }}</p>
+                    </div>
+                    <div>
+                        <p class="leilao-org">{{ leilao.organizacao }}</p>
+                        <p class="leilao-org-desc">Organização favorecida</p>
+                    </div>
+                </div>
+            </a>
         {% endfor %}
     </div>
 </div>
