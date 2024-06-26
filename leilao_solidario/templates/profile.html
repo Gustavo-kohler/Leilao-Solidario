@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+
+{% block head %}
+<link href="{{ url_for('static', filename='styles/profile.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='styles/form-box.css') }}" rel="stylesheet">
+{% endblock %}
+
+
+{% block body %}
+<div class="wrapper-doc">
+    <h1>Perfil</h1>
+
+    <div>
+        <div>
+            <h2>Nome</h2>
+            <p>{{user.username}}</p>
+        </div>
+        <div>
+            <h2>Email</h2>
+            <p>{{user.email}}</p>
+        </div>
+        <div>
+            <h2>Telefone</h2>
+            <p>{{user.telefone}}</p>
+        </div>
+    </div>
+    
+    <form method="POST" action="" class="container">
+        {{ forms_alteracao.csrf_token }}
+        <h3>Altere Seus Dados</h3>
+        <div class="form-group">
+            {{ forms_alteracao.username.label(class="form-control-label") }}
+            {% if forms_alteracao.username.errors %}
+                {{ forms_alteracao.username(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+            {% for erro in forms_alteracao.username.errors %}
+                    {{ erro }}
+                {% endfor %}
+            </div>
+            {% else %}
+                {{ forms_alteracao.username(class="form-control") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ forms_alteracao.email.label(class="form-control-label") }}
+            {% if forms_alteracao.email.errors %}
+                {{ forms_alteracao.email(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+            {% for erro in forms_alteracao.email.errors %}
+                    {{ erro }}
+                {% endfor %}
+            </div>
+            {% else %}
+                {{ forms_alteracao.email(class="form-control") }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            {{ forms_alteracao.telefone.label(class="form-control-label") }}
+            {% if forms_alteracao.telefone.errors %}
+                {{ forms_alteracao.telefone(class="form-control is-invalid") }}
+            <div class="invalid-feedback">
+            {% for erro in forms_alteracao.telefone.errors %}
+                    {{ erro }}
+                {% endfor %}
+            </div>
+            {% else %}
+                {{ forms_alteracao.telefone(class="form-control") }}
+            {% endif %}
+        </div>        
+        {{ forms_alteracao.botao_submit_alterar_dados(class="btn") }}
+    </form>
+
+</div>
+
+{% endblock %}
+

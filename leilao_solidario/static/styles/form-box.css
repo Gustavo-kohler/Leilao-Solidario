@@ -1,0 +1,57 @@
+
+h1 {
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 1rem;
+}
+
+.form-control-label {
+
+}
+
+.form-control {
+    width: 100%;
+    background: #f2f2f2;
+    height: 2rem;
+    border: none;
+    border-radius: .2rem;
+    padding: .1rem .5rem;
+}
+
+.invalid-feedback {
+    color: red;
+    font-size: .8rem;
+}
+
+.btn {
+    background-color: #2a73dd;
+    padding: .8rem 1.8rem;
+    border: none;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: ease-out .5s;
+    color: white;
+}
+
+.btn:hover {
+    background-color: white;
+    color: #2a73dd;
+    outline: 1px solid #2a73dd;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: .2rem;
+    margin-bottom: 1rem;
+}
+
+.form-check-input {
+    height: 100%;
+
+}

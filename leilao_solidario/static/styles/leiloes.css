@@ -1,0 +1,55 @@
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.leiloes-title {
+    margin-bottom: 2rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid grey;
+}
+
+.leilao-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: .4rem;
+    background-color: #d4e1ff;
+    border-radius: .2rem;
+}
+
+.leilao-container:hover {
+    outline: 2px solid var(--main-color);
+}
+
+.image-wrapper {
+    height: 12rem;
+    width: 12rem;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: .2rem;
+}
+
+.text-wrapper {
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.leilao-title {
+    font-size: 2rem;
+}
+
+.leilao-org {
+    font-size: 1.5rem;
+}
+
+.leilao-org-desc {
+    font-size: .8rem;
+}
