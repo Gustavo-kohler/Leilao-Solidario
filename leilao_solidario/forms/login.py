@@ -7,6 +7,7 @@ from leilao_solidario.models import Usuario
 class FormCriarConta(FlaskForm):
     username = StringField('Nome de Usuário', validators=[DataRequired(), length(min=2, max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
+    telefone = StringField('Telefone', validators=[DataRequired()])
     senha = PasswordField('Senha', validators=[DataRequired(), length(min=6, max=20)])
     confirmacao_senha = PasswordField('Confirme a Senha', validators=[DataRequired(), EqualTo('senha')])
     botao_submit_criar_conta = SubmitField('Criar Conta')

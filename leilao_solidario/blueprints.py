@@ -13,3 +13,6 @@ def registrar_blueprints(app):
 
     from .routes.meusleiloes import LEILOES_BP
     app.register_blueprint(LEILOES_BP)
+
+    from .routes.profile import PROFILE
+    app.register_blueprint(PROFILE)

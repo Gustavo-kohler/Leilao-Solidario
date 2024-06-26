@@ -14,6 +14,7 @@ def load_usuario(id_usuario):
 class Usuario(db.Model, UserMixin):
     id: so.Mapped[int] = so.mapped_column(sa.Integer, primary_key=True)
     username: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
+    telefone: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
     email: so.Mapped[str] = so.mapped_column(sa.String, unique=True, nullable=False)
     senha: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
 
@@ -21,6 +22,7 @@ class Usuario(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
+            'telefone': self.telefone,
             'email': self.email,
             'senha': self.senha
         }

@@ -21,6 +21,7 @@ def register():
         senha_criptografada = bcrypt.generate_password_hash(form_criar_conta.senha.data).decode('utf-8')
         usuario = Usuario(username=form_criar_conta.username.data,
                           email=form_criar_conta.email.data,
+                          telefone=form_criar_conta.telefone.data,
                           senha=senha_criptografada)
         db.session.add(usuario)
         db.session.commit()
