@@ -1,18 +1,21 @@
 {% extends "base.html" %}
 
-{% block body %}
+{% block head %}
+<link href="{{ url_for('static', filename='styles/auction.css') }}" rel="stylesheet">
+{% endblock %}
 
+{% block body %}
+<h1>{{ auction.titulo }}</h1>
 <div class="container">
-    <h1>{{ auction.titulo }}</h1>
+
     <div class="content">
-        <div>
+        <div class="esquerda">
             {% if auction.status == 'active' %}
                 <div class="bid-window">
                     <p>Lance Atual</p>
-                    <p>R$ {{ auction.lance_atual }}</p>
+                    <p>R$ {{ auction.lance_atual }},00</p>
                     <p>Feito por: {{host.username}}</p>
                 </div>
-                <p>Tempo restante: {{auction.time_left}}</p>
             {% elif auction.status == 'ended' %}
                 <div class="bid-window">
                     <p>Arrematado!</p>
@@ -25,37 +28,40 @@
                     <p>Leilão cancelado</p>
                 </div>
             {% endif %}
-
-            {% if auction.status == 'active' and host.id != current_user_id %}
-                <form method="POST" action="{{ url_for('auction.auction_novo_lance', auction_id=auction.id) }}">
-                    {{ form_novo_lance.hidden_tag() }}
-                    {{ form_novo_lance.lance.label(class="sr-only") }}
-                    {{ form_novo_lance.lance(placeholder="Lance", class="form-control") }}
-                    {{ form_novo_lance.botao_submit_fazer_lance(class="btn btn-primary") }}
-                </form>
-            {% elif auction.status == 'active' and host.id == current_user_id %}
-                <form method="POST" action="{{ url_for('auction.auction_cancela', auction_id=auction.id) }}">
-                    {{ form_cancela_leilao.hidden_tag() }}
-                    {{ form_cancela_leilao.botao_cancelar(class="btn btn-danger") }}
-                </form>
-            {% endif %}
+            <div>
+                <p>Tempo restante: <span id="countdown" data-time-left="{{ time_left }}"></span></p>
+                {% if auction.status == 'active' and host.id != current_user_id %}
+                    <form method="POST" action="{{ url_for('auction.auction_novo_lance', auction_id=auction.id) }}">
+                        {{ form_novo_lance.hidden_tag() }}
+                        {{ form_novo_lance.lance.label(class="sr-only") }}
+                        {{ form_novo_lance.lance(placeholder="Lance", class="form-control") }}
+                        {{ form_novo_lance.botao_submit_fazer_lance(class="btn btn-primary") }}
+                    </form>
+                {% elif auction.status == 'active' and host.id == current_user_id %}
+                    <form method="POST" action="{{ url_for('auction.auction_cancela', auction_id=auction.id) }}">
+                        {{ form_cancela_leilao.hidden_tag() }}
+                        {{ form_cancela_leilao.botao_cancelar(class="btn btn-danger") }}
+                    </form>
+                {% endif %}
+            </div>
         </div>
+        <div class="direita">
+            {% if imagem == None %}
+                <img src="https://placehold.co/800x800" class="leilao-img">
+            {% else %}
+                <img src="../{{ imagem }}" class="leilao-img">
+            {% endif %}
 
-        {% if image == None %}
-            <img src="https://placehold.co/800x800" class="leilao-img">
-        {% else %}
-            <img src="{{ image }}" class="leilao-img">
-        {% endif %}
-
-        <div>
-            <img src="">
-            <p>{{ auction.descricao }}</p>
-            <h4>{{auction.organizacao}}</h4>
-            <p>Organizacao favorecida</p>
+            <div class="desc">
+                <p>{{ auction.descricao }}</p>
+                <h4>{{auction.organizacao}}</h4>
+                <p>Organizacao favorecida</p>
+            </div>
         </div>
     </div>
 
 
 </div>
 
+<script src="{{ url_for('static', filename='scripts/countdown.js') }}"></script>
 {% endblock %}

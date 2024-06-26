@@ -4,6 +4,7 @@ from leilao_solidario.extensions import db
 from leilao_solidario.models import Leilao, Usuario, UsuarioRelLeilao
 from leilao_solidario.forms.bid import FormNewBid, FormCancelAuction
 import os
+from datetime import datetime, timedelta
 
 AUCTION = Blueprint('auction', __name__)
 
@@ -19,17 +20,28 @@ def pegar_imagem(leilao_id):
 @AUCTION.route('/auction/<auction_id>')
 def auction(auction_id):
     auction = Leilao.query.get(auction_id)
+    imagem = pegar_imagem(auction.id)
     host = Usuario.query.get(auction.host)
-    image = pegar_imagem(auction_id)
     form_cancela_leilao = FormCancelAuction()
     form_novo_lance = FormNewBid()
+    now = datetime.now()
+
+    time_diff = now - auction.hora_ultimo
+    if time_diff.total_seconds() > timedelta(hours=24).total_seconds():
+        auction.status = "ended"
+        db.session.commit()
+        time_left = timedelta(seconds=0)
+    else:
+        time_left = timedelta(hours=24) - time_diff
+    time_left = time_left.total_seconds()
 
     return render_template('auction.html',
                            current_user_id=int(current_user.get_id()),
                            auction=auction, host=host,
                            form_cancela_leilao=form_cancela_leilao,
                            form_novo_lance=form_novo_lance,
-                           image=image)
+                           imagem=imagem,
+                           time_left=time_left)
 
 @AUCTION.route('/auction/<auction_id>/novo_lance', methods=["GET", "POST"])
 def auction_novo_lance(auction_id):
