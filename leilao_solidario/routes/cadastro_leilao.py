@@ -7,6 +7,7 @@ from leilao_solidario.extensions import bcrypt, db, mail
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
 import uuid
+from random import randint
 
 
 CADASTRO_LEILAO = Blueprint('cadastro_leilao', __name__)
@@ -41,7 +42,8 @@ def cadastrar_leilao():
             host=current_user.id,
             ultimo=None,
             status='active',
-            hora_ultimo=datetime.now()
+            hora_ultimo=datetime.now(),
+            numero_secreto=randint(10000000, 99999999)
         )
         db.session.add(leilao)
         db.session.commit()

@@ -8,13 +8,5 @@ class FormNewBid(FlaskForm):
     lance = FloatField("Novo lance")
     botao_submit_fazer_lance = SubmitField('Fazer novo lance')
 
-    def validate_bid(self, lance, auction):
-        if lance <= auction.lance_atual:
-            raise ValidationError('Lance mais baixo que o atual.')
-
-    def validate_user(self, user, auction):
-        if user == auction.ultimo:
-            raise ValidationError("Voce fez o ultimo lance")
-
 class FormCancelAuction(FlaskForm):
     botao_cancelar = SubmitField("Cancelar leilão")

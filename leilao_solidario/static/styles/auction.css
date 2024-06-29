@@ -11,7 +11,7 @@ h1 {
 }
 
 .esquerda {
-    height: 15rem;
+
 }
 
 .bid-window {
@@ -102,6 +102,15 @@ h1 {
 
 .margin-bottom-small {
     margin-bottom: .8rem;
+}
+
+.error-wrapper-auction {
+    margin-top: 1rem;
+}
+
+.error {
+    font-size: .8rem;
+    color: red;
 }
 
 @media (max-width: 47rem) {
