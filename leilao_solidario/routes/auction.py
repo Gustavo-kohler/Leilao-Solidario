@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 
 AUCTION = Blueprint('auction', __name__)
 
+
 def pegar_imagem(leilao_id):
     imagens_dir = os.path.join(current_app.root_path, 'static/imagens_leilao')
     imagens = os.listdir(imagens_dir)
@@ -16,6 +17,7 @@ def pegar_imagem(leilao_id):
         if imagem.split('_')[0] == leilao_id:
             return os.path.join('static/imagens_leilao', imagem)
     return None
+
 
 @AUCTION.route('/auction/<auction_id>')
 def auction(auction_id):
@@ -27,37 +29,46 @@ def auction(auction_id):
     now = datetime.now()
 
     time_diff = now - auction.hora_ultimo
-    if time_diff.total_seconds() > timedelta(hours=24).total_seconds():
+    if time_diff.total_seconds() > timedelta(seconds=600).total_seconds():
         auction.status = "ended"
         db.session.commit()
         time_left = timedelta(seconds=0)
     else:
-        time_left = timedelta(hours=24) - time_diff
+        time_left = timedelta(seconds=600) - time_diff
     time_left = time_left.total_seconds()
+
+    if auction.ultimo is not None:
+        ultimo_licitante = Usuario.query.get(auction.ultimo).username
+    else:
+        ultimo_licitante = Usuario.query.get(auction.ultimo)
 
     return render_template('auction.html',
                            current_user_id=int(current_user.get_id()),
                            auction=auction, host=host,
+                           ultimo_licitante = ultimo_licitante,
                            form_cancela_leilao=form_cancela_leilao,
                            form_novo_lance=form_novo_lance,
                            imagem=imagem,
                            time_left=time_left)
+
 
 @AUCTION.route('/auction/<auction_id>/novo_lance', methods=["GET", "POST"])
 def auction_novo_lance(auction_id):
     auction = Leilao.query.get(auction_id)
     form_novo_lance = FormNewBid()
 
+    now = datetime.now()
+
     if form_novo_lance.validate_on_submit():
         auction.lance_atual = form_novo_lance.lance.data
         auction.ultimo = current_user.get_id()
+        auction.hora_ultimo = now
 
         exists = UsuarioRelLeilao.query.filter_by(id_usuario=current_user.get_id()).first()
         if not exists:
             relacao_usuario_leilao = UsuarioRelLeilao(id_usuario=current_user.get_id(), id_leilao=auction_id)
             db.session.add(relacao_usuario_leilao)
         db.session.commit()
-        print(UsuarioRelLeilao.query.all())
 
     return redirect(url_for('auction.auction', auction_id=auction_id))
 
@@ -72,6 +83,7 @@ def auction_cancela(auction_id):
         db.session.commit()
 
     return redirect(url_for('auction.auction', auction_id=auction_id))
+
 
 @AUCTION.route('/meusleiloes')
 def meusleiloes():

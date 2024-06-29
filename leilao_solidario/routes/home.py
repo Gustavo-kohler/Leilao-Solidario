@@ -16,7 +16,7 @@ def home():
 
 @HOME.route('/register', methods=['GET', 'POST'])
 def register():
-    form_criar_conta = FormCriarConta()
+    form_criar_conta = FormCriarConta(meta={'locales': ['fr_FR', 'fr']})
     if form_criar_conta.validate_on_submit():
         senha_criptografada = bcrypt.generate_password_hash(form_criar_conta.senha.data).decode('utf-8')
         usuario = Usuario(username=form_criar_conta.username.data,
@@ -32,7 +32,7 @@ def register():
     return render_template('register.html', form_criar_conta=form_criar_conta)
 
 
-@HOME.route('/login', methods=['GET','POST'])
+@HOME.route('/login', methods=['GET', 'POST'])
 def login():
     form_login = FormLogin()
     if form_login.validate_on_submit():

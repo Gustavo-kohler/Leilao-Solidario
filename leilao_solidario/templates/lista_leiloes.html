@@ -10,23 +10,27 @@
         <h1 class="leiloes-title">Lista de Leilões</h1>
     </div>
     <div class="leiloes-container">
-        {% for leilao in leiloes %}
-            <a href="{{ url_for('auction.auction', auction_id=leilao.id) }}" class="leilao-container">
-                <div class="image-wrapper">
-                    <img src="{{ leilao.imagem }}" alt="{{ leilao.titulo }}" class="image">
-                </div>
-                <div  class="text-wrapper">
-                    <div>
-                        <h2 class="leilao-title"><strong>{{ leilao.titulo }}</strong></h2>
-                        <p>{{ leilao.descricao }}</p>
+        {% if leiloes %}
+            {% for leilao in leiloes %}
+                <a href="{{ url_for('auction.auction', auction_id=leilao.id) }}" class="leilao-container">
+                    <div class="image-wrapper">
+                        <img src="{{ leilao.imagem }}" alt="{{ leilao.titulo }}" class="image">
                     </div>
-                    <div>
-                        <p class="leilao-org">{{ leilao.organizacao }}</p>
-                        <p class="leilao-org-desc">Organização favorecida</p>
+                    <div class="text-wrapper">
+                        <div>
+                            <h2 class="leilao-title"><strong>{{ leilao.titulo }}</strong></h2>
+                            <p class="leilao-desc">{{ leilao.descricao }}</p>
+                        </div>
+                        <div>
+                            <p class="leilao-org">{{ leilao.organizacao }}</p>
+                            <p class="leilao-org-desc">Organização favorecida</p>
+                        </div>
                     </div>
-                </div>
-            </a>
-        {% endfor %}
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>Não há leilões disponíveis.</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

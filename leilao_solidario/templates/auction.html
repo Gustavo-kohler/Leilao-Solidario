@@ -6,23 +6,37 @@
 
 {% block body %}
 <h1>{{ auction.titulo }}</h1>
-<div class="container">
+<div class="wrapper-doc">
 
-    <div class="content">
+    <div class="content container">
         <div class="esquerda">
-            {% if auction.status == 'active' %}
+            {% if auction.status == 'active' and auction.ultimo == None %}
                 <div class="bid-window">
                     <p>Lance Atual</p>
-                    <p>R$ {{ auction.lance_atual }},00</p>
-                    <p>Feito por: {{host.username}}</p>
+                    <p>R$ {{ auction.lance_atual }}</p>
+                    <p>Ainda sem lances</p>
                 </div>
+            {% elif auction.status == 'active' %}
+                <div class="bid-window">
+                    <p>Lance Atual</p>
+                    <p>R$ {{ auction.lance_atual }}</p>
+                    <p>Feito por: {{ ultimo_licitante }}</p>
+                </div>
+            {% elif auction.status == 'ended' and auction.ultimo == None %}
+                <div class="bid-window">
+                    <p>Sem lances</p>
+                    <p>R$ 0,00</p>
+                    <p>Não houve licitante</p>
+                </div>
+                <p>Leilão finalizado!</p>
             {% elif auction.status == 'ended' %}
                 <div class="bid-window">
                     <p>Arrematado!</p>
                     <p>R$ {{ auction.lance_atual }}</p>
-                    <p>Feito por: {{host.username}}</p>
+                    <p>Parabéns, {{ ultimo_licitante }}</p>
                 </div>
-                <p>Leilão finalizado!</p>
+                <p class="margin-bottom-small">Leilão finalizado!</p>
+                <p class="margin-bottom-small"><strong>{{ ultimo_licitante }}</strong>, entre em contato com o leiloeiro deste item pelo contato {{ host.telefone }}.</p>
             {% else %}
                 <div class="bid-window">
                     <p>Leilão cancelado</p>
@@ -47,9 +61,13 @@
         </div>
         <div class="direita">
             {% if imagem == None %}
-                <img src="https://placehold.co/800x800" class="leilao-img">
+                <div class="leilao-img-wrapper">
+                    <img src="https://placehold.co/800x800" class="leilao-img">
+                </div>
             {% else %}
-                <img src="../{{ imagem }}" class="leilao-img">
+                <div class="leilao-img-wrapper">
+                    <img src="../{{ imagem }}" class="leilao-img">
+                </div>
             {% endif %}
 
             <div class="desc">
