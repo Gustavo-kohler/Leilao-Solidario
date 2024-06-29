@@ -7,32 +7,35 @@
 {% block body %}
 <main class="main">
     <h1 id="test">Meus Leilões</h1>
-<div class="topbar">
-    <div class="dropdown">
-        <div class="select">
-            <span class="selected">{% block selected %}Meus leilões{% endblock %}</span>
-            <div class="caret"></div>
+    <div class="topbar">
+        <div class="dropdown">
+            <div class="select">
+                <span class="selected">{% block selected %}Meus leilões{% endblock %}</span>
+                <div class="caret"></div>
+            </div>
+            <ul class="menu">
+                <li><a href="{{ url_for('meusleiloes.leiloes_ativos') }}">Leilões ativos</a></li>
+                <li><a href="{{ url_for('meusleiloes.leiloes_finalizados') }}">Leilões finalizados</a></li>
+                <li><a href="{{ url_for('meusleiloes.meusleiloes_ativos') }}">Meus leilões ativos</a></li>
+                <li><a href="{{ url_for('meusleiloes.meusleiloes_finalizados') }}">Meus leilões finalizados</a></li>
+            </ul>
         </div>
-        <ul class="menu">
-            <a href="{{ url_for('meusleiloes.leiloes_ativos') }}"><li>Leilões ativos</li></a>
-            <a href="{{ url_for('meusleiloes.leiloes_finalizados') }}"><li>Leilões finalizados</li></a>
-            <a href="{{ url_for('meusleiloes.meusleiloes_ativos') }}"><li>Meus leilões ativos</li></a>
-            <a href="{{ url_for('meusleiloes.meusleiloes_finalizados') }}"><li>Meus leilões finalizados</li></a>
-        </ul>
+        {% block indices %}
+        <div class="indices">
+            <a href="{{ url_for('meusleiloes.leiloes_ativos') }}" class="ind">Leilões ativos</a>
+            <a href="{{ url_for('meusleiloes.leiloes_finalizados') }}" class="ind">Leilões finalizados</a>
+            <a href="{{ url_for('meusleiloes.meusleiloes_ativos') }}" class="ind">Meus leilões ativos</a>
+            <a href="{{ url_for('meusleiloes.meusleiloes_finalizados') }}" class="ind">Meus leilões finalizados</a>
+        </div>
+        {% endblock %}
+        <a href="{{ url_for('cadastro_leilao.cadastrar_leilao') }}" class="botao">
+            <p>Novo leilão</p>
+        </a>
     </div>
-    {% block indices %}
-    <div class="indices">
-        <a href="{{ url_for('meusleiloes.leiloes_ativos') }}" class="ind">Leilões ativos</a>
-        <a href="{{ url_for('meusleiloes.leiloes_finalizados') }}" class="ind">Leilões finalizados</a>
-        <a href="{{ url_for('meusleiloes.meusleiloes_ativos') }}" class="ind">Meus leilões ativos</a>
-        <a href="{{ url_for('meusleiloes.meusleiloes_finalizados') }}" class="ind">Meus leilões finalizados</a>
-    </div>
-    {% endblock %}
-    <a href="{{ url_for('cadastro_leilao.cadastrar_leilao') }}" class="botao">
-        <p>Novo leilão</p>
-    </a>
-</div>
-{% block grid %}{% endblock %}
+    {% if origin %}
+        <p class="sem-leiloes">Selecione alguma aba acima!</p>
+    {% endif %}
+    {% block grid %}{% endblock %}
 </main>
 
 {% endblock %}

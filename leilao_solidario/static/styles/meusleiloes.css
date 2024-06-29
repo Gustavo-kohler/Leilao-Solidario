@@ -5,10 +5,6 @@ h1 {
     margin: 2rem auto;
 }
 
-body {
-    background-color: var(--sec-window);
-}
-
 a {
     text-decoration: none;
     color: rgba(0, 0, 0, 0.85);
@@ -144,19 +140,17 @@ a {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    width: calc(70% + 2rem);
-    margin: 0 auto;
 }
 
 .leiloes-item {
-    margin: 1rem;
+    padding: 0;
     transition: .5s;
-    background-color: var(--window);
+    height: 20rem;
     border-radius: 5px;
 }
 
 .leiloes-item:hover {
-    margin: 0;
+    padding: 1rem;
 }
 
 .leiloes-item:hover .leilao-titulo {
@@ -173,7 +167,6 @@ a {
     object-fit: cover;
 }
 
-
 .leilao-titulo{
     display:flex;
     align-items: center;
@@ -181,7 +174,8 @@ a {
     text-align: center;
     font-size: 1.2rem;
     padding: 0.3rem;
-    color: rgb(30, 30, 30); 
+    color: white;
+    background: var(--main-color);
 }
 
 .sem-leiloes{
@@ -197,7 +191,6 @@ a {
     .leiloes-container {
         grid-template-columns: repeat(2, 1fr);
     }
-
 
     .botao {
         font-size: 1rem;

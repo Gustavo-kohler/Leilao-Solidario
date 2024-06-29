@@ -56,6 +56,7 @@ class Leilao(db.Model):
             'hora_ultimo': self.hora_ultimo.strftime('%H:%M dia (%d/%m/%Y)') if self.hora_ultimo else None
         }
 
+
 class UsuarioRelLeilao(db.Model):
     id: so.Mapped[str] = so.mapped_column(sa.String, primary_key=True, default=generate_hex_id)
     id_usuario: so.Mapped[str] = so.mapped_column(sa.String, db.ForeignKey('usuario.id'), nullable=False)

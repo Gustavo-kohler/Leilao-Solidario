@@ -61,6 +61,7 @@ h1 {
     grid-template-columns: repeat(4, 1fr);
     margin-top: 2rem;
     gap: 2rem;
+    margin-bottom: 2rem;
 }
 
 .grid-item {

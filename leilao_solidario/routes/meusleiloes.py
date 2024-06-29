@@ -19,8 +19,7 @@ def pegar_imagem(leilao_id):
 @LEILOES_BP.route('/')
 @login_required
 def meusleiloes():
-
-    return render_template('meusleiloes.html', current_user=current_user)
+    return render_template('meusleiloes.html', current_user=current_user, origin=True)
 
 
 @LEILOES_BP.route('/leiloes-ativos')

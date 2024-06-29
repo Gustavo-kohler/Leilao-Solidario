@@ -20,7 +20,7 @@ def pegar_imagem(leilao_id):
 @login_required
 @LEILAO.route('/leiloes')
 def lista_leiloes():
-    leiloes = Leilao.query.all()
+    leiloes = Leilao.query.filter_by(status='active')
     leiloes_dict = [leilao.to_dict() for leilao in leiloes if leilao.host != current_user.id]
 
     for leilao in leiloes_dict:

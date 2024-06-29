@@ -26,7 +26,7 @@
                         <a href="{{ url_for('leilao.lista_leiloes') }}">Leilões</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('auction.meusleiloes') }}">Meus leilões</a>
+                        <a href="{{ url_for('meusleiloes.leiloes_ativos') }}">Meus leilões</a>
                     </li>
                     <li>
                         <a href="{{ url_for('profile.profile')}}">Perfil</a>
@@ -46,7 +46,7 @@
                 </ul>
             {% endif %}
             <button class="menu-wrapper ham-button">
-                <img src="{{ url_for('static', filename='images/menu_icon.png') }}" class="menu">
+                <img src="{{ url_for('static', filename='images/menu_icon.png') }}" class="menu-img">
             </button>
         </nav>
     </header>

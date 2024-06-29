@@ -1,13 +1,13 @@
 
-const dropdown = document.querySelector(".navbar-dropdown");
-const button = document.querySelector(".ham-button")
+const navbarDropdown = document.querySelector(".navbar-dropdown");
+const hamButton = document.querySelector(".ham-button")
 
 function toggleMenu() {
-    if(dropdown.classList.contains("menu-click")) {
-        dropdown.classList.remove("menu-click");
+    if(navbarDropdown.classList.contains("menu-click")) {
+        navbarDropdown.classList.remove("menu-click");
     } else {
-        dropdown.classList.add("menu-click");
+        navbarDropdown.classList.add("menu-click");
     }
 }
 
-button.addEventListener("click", toggleMenu);
+hamButton.addEventListener("click", toggleMenu);

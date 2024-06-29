@@ -23,9 +23,15 @@ a {
     outline: 2px solid var(--main-color);
 }
 
+.leilao-desc {
+    display: block;
+}
+
 .image-wrapper {
     height: 12rem;
     width: 12rem;
+    flex-grow: 0;
+    flex-shrink: 0;
 }
 
 .image {
@@ -52,4 +58,44 @@ a {
 
 .leilao-org-desc {
     font-size: .8rem;
+}
+
+@media (max-width: 56.25rem) {
+   .leilao-org {
+        font-size: 1rem;
+   }
+}
+
+@media (max-width: 43.75rem) {
+    .leilao-container {
+        flex-direction: column;
+    }
+
+    .image-wrapper {
+        height: 10rem;
+        width: auto;
+        flex-grow: 1;
+        flex-shrink: 1;
+    }
+}
+
+@media (max-width: 25rem) {
+    .image-wrapper {
+        height: 5rem;
+    }
+
+    .leilao-title {
+        font-size: 1.2rem;
+    }
+
+    .leilao-desc {
+        display: none;
+    }
+
+    .text-wrapper {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }

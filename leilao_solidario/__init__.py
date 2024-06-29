@@ -4,7 +4,6 @@ from .extensions import db, login_manager, bcrypt, mail
 from .blueprints import registrar_blueprints
 from .config import Config
 
-
 def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
