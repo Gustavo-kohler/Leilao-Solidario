@@ -37,6 +37,9 @@
                 </div>
                 <p class="margin-bottom-small">Leilão finalizado!</p>
                 <p class="margin-bottom-small"><strong>{{ ultimo_licitante }}</strong>, entre em contato com o leiloeiro deste item pelo contato {{ host.telefone }}.</p>
+                {% if current_user_id == auction.ultimo %}
+                    <p class="margin-bottom-small">Número secreto: <strong>{{ auction.numero_secreto }}</strong></p>
+                {% endif %}
             {% else %}
                 <div class="bid-window">
                     <p>Leilão cancelado</p>
@@ -45,17 +48,26 @@
             <div>
                 <p>Tempo restante: <span id="countdown" data-time-left="{{ time_left }}"></span></p>
                 {% if auction.status == 'active' and host.id != current_user_id %}
-                    <form method="POST" action="{{ url_for('auction.auction_novo_lance', auction_id=auction.id) }}">
+                    <form method="POST" action="{{ url_for('auction.auction', auction_id=auction.id) }}">
                         {{ form_novo_lance.hidden_tag() }}
                         {{ form_novo_lance.lance.label(class="sr-only") }}
                         {{ form_novo_lance.lance(placeholder="Lance", class="form-control") }}
                         {{ form_novo_lance.botao_submit_fazer_lance(class="btn btn-primary") }}
                     </form>
                 {% elif auction.status == 'active' and host.id == current_user_id %}
-                    <form method="POST" action="{{ url_for('auction.auction_cancela', auction_id=auction.id) }}">
+                    <form method="POST" action="{{ url_for('auction.auction', auction_id=auction.id) }}">
                         {{ form_cancela_leilao.hidden_tag() }}
                         {{ form_cancela_leilao.botao_cancelar(class="btn btn-danger") }}
                     </form>
+                {% endif %}
+            </div>
+            <div class="error-wrapper-auction">
+                {% if erro == 'mesmo_user' %}
+                    <p class="error">Você fez o lance mais recente.</p>
+                {% elif erro == 'lance_menor' %}
+                    <p class="error">Você precisa fazer um lance maior que o atual.</p>
+                {% elif erro == 'acabou_tempo' %}
+                    <p class="error">O tempo acabou, este último lance não foi computado.</p>
                 {% endif %}
             </div>
         </div>

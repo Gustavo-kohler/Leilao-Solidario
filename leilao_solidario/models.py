@@ -42,6 +42,7 @@ class Leilao(db.Model):
     host: so.Mapped[int] = so.mapped_column(sa.Integer, sa.ForeignKey("usuario.id", name="fk_host"),nullable=False)
     status: so.Mapped[str] = so.mapped_column(sa.String, nullable=False, default="active")
     hora_ultimo: so.Mapped[datetime] = so.mapped_column(sa.DateTime)
+    numero_secreto: so.Mapped[str] = so.mapped_column(sa.String, nullable=False)
 
     def to_dict(self):
         return {
@@ -53,7 +54,8 @@ class Leilao(db.Model):
             'ultimo': self.ultimo,
             'host': self.host,
             'status': self.status,
-            'hora_ultimo': self.hora_ultimo.strftime('%H:%M dia (%d/%m/%Y)') if self.hora_ultimo else None
+            'hora_ultimo': self.hora_ultimo.strftime('%H:%M dia (%d/%m/%Y)') if self.hora_ultimo else None,
+            'numero_secreto': self.numero_secreto
         }
 
 
