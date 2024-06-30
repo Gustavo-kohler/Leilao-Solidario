@@ -26,7 +26,8 @@ class FormCriarConta(FlaskForm):
     telefone = StringField(
         'Telefone',
         validators=[
-            DataRequired(message='O telefone é obrigatório.')
+            DataRequired(message='O telefone é obrigatório.'),
+            length(min=11, max=11, message='O número de telefone deve ter 11 caracteres.')
         ],
         render_kw={"placeholder": "(xx) x xxxx-xxxx"}
     )
@@ -54,10 +55,6 @@ class FormCriarConta(FlaskForm):
         usuario = Usuario.query.filter_by(email=email.data).first()
         if usuario:
             raise ValidationError('Email já cadastrado! Cadastre-se com outro email ou faça login.')
-
-    def validate_telefone(self, telefone):
-        if len(telefone.data) != 11:
-            raise ValidationError('Número de dígitos diferente do esperado.')
 
 class FormLogin(FlaskForm):
     email = StringField(
