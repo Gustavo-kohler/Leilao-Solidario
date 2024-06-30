@@ -20,6 +20,7 @@ def pegar_imagem(leilao_id):
 
 
 @AUCTION.route('/auction/<auction_id>', methods=['GET', 'POST'])
+@login_required
 def auction(auction_id):
     auction = Leilao.query.get(auction_id)
     imagem = pegar_imagem(auction.id)
@@ -82,6 +83,7 @@ def auction(auction_id):
     )
 
 @AUCTION.route('/meusleiloes')
+@login_required
 def meusleiloes():
     if not current_user.is_authenticated:
         flash('Você precisa estar logado para acessar essa página.', 'alert-danger')
