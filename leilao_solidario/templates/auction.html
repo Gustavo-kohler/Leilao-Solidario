@@ -45,7 +45,9 @@
                 </div>
             {% endif %}
             <div>
+                {% if auction.status != 'canceled' %}
                 <p>Tempo restante: <span id="countdown" data-time-left="{{ time_left }}"></span></p>
+                {% endif %}
                 {% if auction.status == 'active' and host.id != current_user_id %}
                     <form method="POST" action="{{ url_for('auction.auction_novo_lance', auction_id=auction.id) }}">
                         {{ form_novo_lance.hidden_tag() }}

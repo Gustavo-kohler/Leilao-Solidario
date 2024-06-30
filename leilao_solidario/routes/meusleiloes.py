@@ -43,7 +43,7 @@ def leiloes_ativos():
 @login_required
 def leiloes_finalizados():
 
-    leiloes = db.session.query(Leilao).filter_by(status="ended").join(UsuarioRelLeilao)\
+    leiloes = db.session.query(Leilao).filter((Leilao.status == "ended") | (Leilao.status == "canceled")).join(UsuarioRelLeilao)\
         .filter(UsuarioRelLeilao.id_usuario == current_user.id).all()
 
     leiloes_dict = [leilao.to_dict() for leilao in leiloes]
