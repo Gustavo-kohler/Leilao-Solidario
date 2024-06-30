@@ -7,10 +7,9 @@
 {% block body %}
 <h1>{{ auction.titulo }}</h1>
 <div class="wrapper-doc">
-
     <div class="content container">
         <div class="esquerda">
-            {% if auction.status == 'active' and auction.ultimo == None %}
+            {% if auction.status == 'active' and ultimo_licitante == None %}
                 <div class="bid-window">
                     <p>Lance Atual</p>
                     <p>R$ {{ auction.lance_atual }}</p>
@@ -20,7 +19,7 @@
                 <div class="bid-window">
                     <p>Lance Atual</p>
                     <p>R$ {{ auction.lance_atual }}</p>
-                    <p>Feito por: {{ ultimo_licitante }}</p>
+                    <p>Feito por: {{ ultimo_licitante.username }}</p>
                 </div>
             {% elif auction.status == 'ended' and auction.ultimo == None %}
                 <div class="bid-window">
@@ -33,7 +32,7 @@
                 <div class="bid-window">
                     <p>Arrematado!</p>
                     <p>R$ {{ auction.lance_atual }}</p>
-                    <p>Parabéns, {{ ultimo_licitante }}</p>
+                    <p>Parabéns, {{ ultimo_licitante.username }}</p>
                 </div>
                 <p class="margin-bottom-small">Leilão finalizado!</p>
                 <p class="margin-bottom-small"><strong>{{ ultimo_licitante }}</strong>, entre em contato com o leiloeiro deste item pelo contato {{ host.telefone }}.</p>
@@ -48,26 +47,28 @@
             <div>
                 <p>Tempo restante: <span id="countdown" data-time-left="{{ time_left }}"></span></p>
                 {% if auction.status == 'active' and host.id != current_user_id %}
-                    <form method="POST" action="{{ url_for('auction.auction', auction_id=auction.id) }}">
+                    <form method="POST" action="{{ url_for('auction.auction_novo_lance', auction_id=auction.id) }}">
                         {{ form_novo_lance.hidden_tag() }}
                         {{ form_novo_lance.lance.label(class="sr-only") }}
                         {{ form_novo_lance.lance(placeholder="Lance", class="form-control") }}
                         {{ form_novo_lance.botao_submit_fazer_lance(class="btn btn-primary") }}
                     </form>
                 {% elif auction.status == 'active' and host.id == current_user_id %}
-                    <form method="POST" action="{{ url_for('auction.auction', auction_id=auction.id) }}">
+                    <form method="POST" action="{{ url_for('auction.auction_cancela', auction_id=auction.id) }}">
                         {{ form_cancela_leilao.hidden_tag() }}
                         {{ form_cancela_leilao.botao_cancelar(class="btn btn-danger") }}
                     </form>
                 {% endif %}
             </div>
             <div class="error-wrapper-auction">
-                {% if erro == 'mesmo_user' %}
+                {% if erro == 1 %}
                     <p class="error">Você fez o lance mais recente.</p>
-                {% elif erro == 'lance_menor' %}
+                {% elif erro == 2 %}
                     <p class="error">Você precisa fazer um lance maior que o atual.</p>
-                {% elif erro == 'acabou_tempo' %}
+                {% elif erro == 3 %}
                     <p class="error">O tempo acabou, este último lance não foi computado.</p>
+                {% elif erro == 4 %}
+                    <p class="error">O tempo acabou, não foi possível cancelar o leilão.</p>
                 {% endif %}
             </div>
         </div>
@@ -78,7 +79,7 @@
                 </div>
             {% else %}
                 <div class="leilao-img-wrapper">
-                    <img src="../{{ imagem }}" class="leilao-img">
+                    <img src="{{ url_for('static', filename=imagem) }}" class="leilao-img">
                 </div>
             {% endif %}
 
@@ -89,8 +90,6 @@
             </div>
         </div>
     </div>
-
-
 </div>
 
 <script src="{{ url_for('static', filename='scripts/countdown.js') }}"></script>

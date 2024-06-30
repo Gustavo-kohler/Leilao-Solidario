@@ -15,59 +15,34 @@ def pegar_imagem(leilao_id):
 
     for imagem in imagens:
         if imagem.split('_')[0] == leilao_id:
-            return os.path.join('static/imagens_leilao', imagem)
+            return os.path.join('imagens_leilao', imagem)
     return None
 
 
-@AUCTION.route('/auction/<auction_id>', methods=['GET', 'POST'])
+@AUCTION.route('/auction/<auction_id>', defaults={'erro_id': 0})
+@AUCTION.route('/auction/<auction_id>/<erro_id>')
 @login_required
-def auction(auction_id):
+def auction(auction_id, erro_id):
     auction = Leilao.query.get(auction_id)
+    erro_id = int(erro_id)
     imagem = pegar_imagem(auction.id)
     host = Usuario.query.get(auction.host)
-
     form_cancela_leilao = FormCancelAuction()
     form_novo_lance = FormNewBid()
-
-    duracao_delta_seg = 120
-
     now = datetime.now()
+
     time_diff = now - auction.hora_ultimo
-    if time_diff.total_seconds() > timedelta(seconds=duracao_delta_seg).total_seconds():
+    if time_diff.total_seconds() > timedelta(hours=24).total_seconds():
         auction.status = "ended"
         db.session.commit()
         time_left = timedelta(seconds=0)
     else:
-        time_left = timedelta(seconds=duracao_delta_seg) - time_diff
+        time_left = timedelta(hours=24) - time_diff
     time_left = time_left.total_seconds()
 
-    erro = ''
+    ultimo_licitante = Usuario.query.get(auction.ultimo)
 
-    if form_novo_lance.validate_on_submit():
-        if auction.ultimo == int(current_user.get_id()):
-            erro = 'mesmo_user'
-        elif auction.lance_atual >= form_novo_lance.lance.data:
-            erro = 'lance_menor'
-        elif time_diff.total_seconds() > timedelta(seconds=duracao_delta_seg).total_seconds():
-            erro = 'acabou_tempo'
-        else:
-            auction.lance_atual = form_novo_lance.lance.data
-            auction.ultimo = current_user.get_id()
-            auction.hora_ultimo = now
-
-            exists = UsuarioRelLeilao.query.filter_by(id_usuario=current_user.get_id()).first()
-            if not exists:
-                relacao_usuario_leilao = UsuarioRelLeilao(id_usuario=current_user.get_id(), id_leilao=auction_id)
-                db.session.add(relacao_usuario_leilao)
-            db.session.commit()
-    elif form_cancela_leilao.validate_on_submit():
-        auction.status = "canceled"
-        db.session.commit()
-
-    if auction.ultimo is not None:
-        ultimo_licitante = Usuario.query.get(auction.ultimo).username
-    else:
-        ultimo_licitante = Usuario.query.get(auction.ultimo)
+    print('-------------------', erro_id, type(erro_id))
 
     return render_template(
         'auction.html',
@@ -79,8 +54,60 @@ def auction(auction_id):
         form_novo_lance=form_novo_lance,
         imagem=imagem,
         time_left=time_left,
-        erro=erro
+        erro=erro_id
     )
+
+
+@AUCTION.route('/auction/<auction_id>/novo_lance', methods=["POST"])
+def auction_novo_lance(auction_id):
+    auction = Leilao.query.get(auction_id)
+    form_novo_lance = FormNewBid()
+
+    now = datetime.now()
+    time_diff = now - auction.hora_ultimo
+
+    erro_id = 0  # sem erros
+
+    if form_novo_lance.validate_on_submit():
+        if auction.ultimo == int(current_user.get_id()):
+            erro_id = 1  # mesmo user
+        elif auction.lance_atual >= form_novo_lance.lance.data:
+            erro_id = 2  # lance menor
+        elif time_diff.total_seconds() > timedelta(hours=24).total_seconds():
+            erro_id = 3  # acabou tempo
+        else:
+            auction.lance_atual = form_novo_lance.lance.data
+            auction.ultimo = current_user.get_id()
+            auction.hora_ultimo = now
+
+            exists = UsuarioRelLeilao.query.filter_by(id_usuario=current_user.get_id()).first()
+            if not exists:
+                relacao_usuario_leilao = UsuarioRelLeilao(id_usuario=current_user.get_id(), id_leilao=auction_id)
+                db.session.add(relacao_usuario_leilao)
+            db.session.commit()
+
+    return redirect(url_for('auction.auction', auction_id=auction_id, erro_id=erro_id))
+
+
+@AUCTION.route('/auction/<auction_id>/cancelar', methods=["POST"])
+def auction_cancela(auction_id):
+    auction = Leilao.query.get(auction_id)
+    form_cancela_leilao = FormCancelAuction()
+
+    now = datetime.now()
+    time_diff = now - auction.hora_ultimo
+
+    erro = 0  # sem erros
+
+    if form_cancela_leilao.validate_on_submit():
+        if time_diff.total_seconds() > timedelta(hours=24).total_seconds():
+            erro = 4  # acabou tempo de cancelamento
+        else:
+            auction.status = "canceled"
+            db.session.commit()
+
+    return redirect(url_for('auction.auction', auction_id=auction_id, erro=erro))
+
 
 @AUCTION.route('/meusleiloes')
 @login_required
