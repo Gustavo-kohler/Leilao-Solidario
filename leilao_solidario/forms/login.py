@@ -6,7 +6,7 @@ from leilao_solidario.models import Usuario
 
 class FormCriarConta(FlaskForm):
     username = StringField(
-        'Nome de Usuário',
+        'Usuário',
         validators=[
            DataRequired(message='O nome de usuário é obrigatório.'),
            length(min=2, max=20, message='O nome de usuário deve ter de 2 a 20 caracteres.')
@@ -26,8 +26,7 @@ class FormCriarConta(FlaskForm):
     telefone = StringField(
         'Telefone',
         validators=[
-            DataRequired(message='O telefone é obrigatório.'),
-            length(min=11, max=11, message='O número de telefone deve ter 11 caracteres.')
+            DataRequired(message='O telefone é obrigatório.')
         ],
         render_kw={"placeholder": "(xx) x xxxx-xxxx"}
     )
@@ -55,6 +54,10 @@ class FormCriarConta(FlaskForm):
         usuario = Usuario.query.filter_by(email=email.data).first()
         if usuario:
             raise ValidationError('Email já cadastrado! Cadastre-se com outro email ou faça login.')
+
+    def validate_telefone(self, telefone):
+        if len(telefone.data) != 11:
+            raise ValidationError('Número de dígitos diferente do esperado.')
 
 class FormLogin(FlaskForm):
     email = StringField(
