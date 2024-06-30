@@ -1,4 +1,4 @@
-import os
+
 
 class Config:
     SECRET_KEY = 'gk527tbwv6n'

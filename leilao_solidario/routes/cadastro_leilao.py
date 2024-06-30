@@ -1,10 +1,10 @@
 import os
 import secrets
-from leilao_solidario.models import Usuario, Leilao
-from flask import Blueprint, render_template, redirect, url_for, flash, request, current_app
+from leilao_solidario.models import Leilao
+from flask import Blueprint, render_template, redirect, url_for, flash, current_app
 from leilao_solidario.forms.cadastro import FormCadastroLeilao
-from leilao_solidario.extensions import bcrypt, db, mail
-from flask_login import login_user, current_user, logout_user, login_required
+from leilao_solidario.extensions import db
+from flask_login import current_user, login_required
 from datetime import datetime
 import uuid
 from random import randint

@@ -42,8 +42,6 @@ def auction(auction_id, erro_id):
 
     ultimo_licitante = Usuario.query.get(auction.ultimo)
 
-    print('-------------------', erro_id, type(erro_id))
-
     return render_template(
         'auction.html',
         current_user_id=int(current_user.get_id()),

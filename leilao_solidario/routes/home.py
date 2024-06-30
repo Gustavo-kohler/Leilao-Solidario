@@ -1,10 +1,8 @@
 from leilao_solidario.models import Usuario
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from leilao_solidario.forms.login import FormLogin, FormCriarConta
-from leilao_solidario.extensions import bcrypt, db, mail
-from flask_login import login_user, current_user, logout_user, login_required
-from flask_mail import Message
-
+from leilao_solidario.extensions import bcrypt, db
+from flask_login import login_user, logout_user, login_required
 
 HOME = Blueprint('home', __name__)
 
@@ -14,15 +12,20 @@ HOME = Blueprint('home', __name__)
 def home():
     return render_template('home.html')
 
+
 @HOME.route('/register', methods=['GET', 'POST'])
 def register():
     form_criar_conta = FormCriarConta(meta={'locales': ['fr_FR', 'fr']})
     if form_criar_conta.validate_on_submit():
         senha_criptografada = bcrypt.generate_password_hash(form_criar_conta.senha.data).decode('utf-8')
-        usuario = Usuario(username=form_criar_conta.username.data,
-                          email=form_criar_conta.email.data,
-                          telefone=form_criar_conta.telefone.data,
-                          senha=senha_criptografada)
+
+        usuario = Usuario(
+            username=form_criar_conta.username.data,
+            email=form_criar_conta.email.data,
+            telefone=form_criar_conta.telefone.data,
+            senha=senha_criptografada
+        )
+
         db.session.add(usuario)
         db.session.commit()
         flash(
@@ -50,6 +53,7 @@ def login():
             else:
                 flash(f'Senha incorreta, tente novamente.', 'alert-danger')
     return render_template('login.html', form_login=form_login)
+
 
 @HOME.route('/sair')
 @login_required
