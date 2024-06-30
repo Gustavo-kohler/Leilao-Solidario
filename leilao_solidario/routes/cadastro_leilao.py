@@ -23,6 +23,7 @@ def salvar_imagem(form_imagem, id):
 
 
 @CADASTRO_LEILAO.route('/cadastro_leilao', methods=['GET', 'POST'])
+@login_required
 def cadastrar_leilao():
     form_cadastro_leilao = FormCadastroLeilao()
     if not current_user.is_authenticated:
