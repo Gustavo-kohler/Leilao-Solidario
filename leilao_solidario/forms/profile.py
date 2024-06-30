@@ -1,7 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, length, Email, EqualTo, ValidationError, Optional
-from leilao_solidario.models import Usuario
+from wtforms import StringField, SubmitField
+from wtforms.validators import length, Email, Optional
 
 
 class FormAlterarDados(FlaskForm):
@@ -9,5 +8,3 @@ class FormAlterarDados(FlaskForm):
     email = StringField('Email', validators=[Optional(), Email()], render_kw={"placeholder": "exemplo@exemplo.com"})
     telefone = StringField('Telefone', validators=[Optional()], render_kw={"placeholder": "(xx)x xxxx-xxxx"})
     botao_submit_alterar_dados = SubmitField('Alterar Dados')
-
-

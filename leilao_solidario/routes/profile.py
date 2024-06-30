@@ -1,10 +1,11 @@
-from flask import Blueprint, render_template, redirect, url_for, flash, current_app, request
+from flask import Blueprint, render_template, redirect, url_for, flash
 from flask_login import current_user, login_required
 from leilao_solidario.extensions import db
-from leilao_solidario.models import Leilao, Usuario, UsuarioRelLeilao
+from leilao_solidario.models import Usuario
 from leilao_solidario.forms.profile import FormAlterarDados
 
 PROFILE = Blueprint('profile', __name__)
+
 
 @PROFILE.route('/profile', methods=['GET', 'POST'])
 @login_required
@@ -29,4 +30,3 @@ def profile():
     
     user_dict = user.to_dict()
     return render_template('profile.html', forms_alteracao=forms, user=user_dict)
-

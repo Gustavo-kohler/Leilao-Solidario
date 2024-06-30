@@ -4,8 +4,8 @@ from leilao_solidario.extensions import db
 from leilao_solidario.models import Leilao, Usuario, UsuarioRelLeilao
 import os
 
-
 LEILOES_BP = Blueprint('meusleiloes', __name__, url_prefix='/meusleiloes')
+
 
 def pegar_imagem(leilao_id):
     imagens_dir = os.path.join(current_app.root_path, 'static/imagens_leilao')
@@ -15,6 +15,7 @@ def pegar_imagem(leilao_id):
         if imagem.split('_')[0] == leilao_id:
             return os.path.join('static/imagens_leilao', imagem)
     return None
+
 
 @LEILOES_BP.route('/')
 @login_required

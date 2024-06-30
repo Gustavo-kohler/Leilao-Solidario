@@ -1,6 +1,6 @@
 from leilao_solidario.models import Usuario, Leilao
 from flask import Blueprint, render_template, current_app
-from flask_login import current_user, logout_user, login_required
+from flask_login import current_user, login_required
 import os
 
 
