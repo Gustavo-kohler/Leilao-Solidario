@@ -68,6 +68,8 @@
                     <p class="error">Você precisa fazer um lance maior que o atual.</p>
                 {% elif erro == 'acabou_tempo' %}
                     <p class="error">O tempo acabou, este último lance não foi computado.</p>
+                {% elif erro == 'acabou_tempo_cancelamento' %}
+                    <p class="error">O tempo acabou, não foi possível cancelar o leilão.</p>
                 {% endif %}
             </div>
         </div>
