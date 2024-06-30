@@ -61,8 +61,11 @@ def auction(auction_id):
                 db.session.add(relacao_usuario_leilao)
             db.session.commit()
     elif form_cancela_leilao.validate_on_submit():
-        auction.status = "canceled"
-        db.session.commit()
+        if time_diff.total_seconds() > timedelta(seconds=duracao_delta_seg).total_seconds():
+            erro = 'acabou_tempo_cancelamento'
+        else:
+            auction.status = "canceled"
+            db.session.commit()
 
     if auction.ultimo is not None:
         ultimo_licitante = Usuario.query.get(auction.ultimo).username
