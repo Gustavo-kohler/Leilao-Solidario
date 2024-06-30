@@ -16,3 +16,6 @@ def registrar_blueprints(app):
 
     from .routes.profile import PROFILE
     app.register_blueprint(PROFILE)
+
+    from .error_handler import error_bp
+    app.register_blueprint(error_bp)
