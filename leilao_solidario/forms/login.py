@@ -10,7 +10,8 @@ class FormCriarConta(FlaskForm):
         validators=[
            DataRequired(message='O nome de usuário é obrigatório.'),
            length(min=2, max=20, message='O nome de usuário deve ter de 2 a 20 caracteres.')
-        ]
+        ],
+        render_kw={"placeholder": "Informe seu nome"}
     )
 
     email = StringField(
@@ -18,14 +19,16 @@ class FormCriarConta(FlaskForm):
         validators=[
             DataRequired(message='O email é obrigatório.'),
             Email(message='Formato de email inválido.')
-        ]
+        ],
+        render_kw={"placeholder": "exemplo@exemplo.com"}
     )
 
     telefone = StringField(
         'Telefone',
         validators=[
             DataRequired(message='O telefone é obrigatório.')
-        ]
+        ],
+        render_kw={"placeholder": "(xx) x xxxx-xxxx"}
     )
 
     senha = PasswordField(
@@ -33,7 +36,8 @@ class FormCriarConta(FlaskForm):
         validators=[
             DataRequired(message='A senha é obrigatória.'),
             length(min=6, max=20, message='A senha deve ter de 6 a 20 caracteres.')
-        ]
+        ],
+        render_kw={"placeholder": "A senha deve ter entre 6 e 20 caracteres"}
     )
 
     confirmacao_senha = PasswordField(

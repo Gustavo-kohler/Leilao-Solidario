@@ -8,10 +8,10 @@
 
 
 {% block body %}
-<div class="wrapper-doc">
-    <h1>Perfil</h1>
+<h1>Perfil</h1>
+<div class="profile">
 
-    <div>
+    <div class="infos">
         <div>
             <h2>Nome</h2>
             <p>{{user.username}}</p>
@@ -28,7 +28,7 @@
     
     <form method="POST" action="" class="container">
         {{ forms_alteracao.csrf_token }}
-        <h3>Altere Seus Dados</h3>
+        <h2>Altere Seus Dados</h2>
         <div class="form-group">
             {{ forms_alteracao.username.label(class="form-control-label") }}
             {% if forms_alteracao.username.errors %}
