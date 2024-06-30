@@ -55,7 +55,7 @@
             <a href="{{ url_for('cadastro_leilao.cadastrar_leilao') }}" class="navbar-dropdown-a">Novo leilão</a>
             <a href="{{ url_for('leilao.lista_leiloes') }}" class="navbar-dropdown-a">Leilões</a>
             <a href="{{ url_for('auction.meusleiloes') }}" class="navbar-dropdown-a">Meus leilões</a>
-            <a href="" class="navbar-dropdown-a">Perfil</a>
+            <a href="{{ url_for('profile.profile')}}" class="navbar-dropdown-a">Perfil</a>
             <a href="{{ url_for('home.sair') }}" class="navbar-dropdown-a">Encerrar sessão</a>
         </div>
     {% else %}
