@@ -15,7 +15,7 @@ def home():
 
 @HOME.route('/register', methods=['GET', 'POST'])
 def register():
-    form_criar_conta = FormCriarConta(meta={'locales': ['fr_FR', 'fr']})
+    form_criar_conta = FormCriarConta()
     if form_criar_conta.validate_on_submit():
         senha_criptografada = bcrypt.generate_password_hash(form_criar_conta.senha.data).decode('utf-8')
 
@@ -61,9 +61,3 @@ def sair():
     logout_user()
     flash('Logout feito com sucesso!', 'alert-success')
     return redirect(url_for('home.home'))
-
-
-@HOME.route('/perfil')
-@login_required
-def perfil():
-    return render_template('perfil.html')

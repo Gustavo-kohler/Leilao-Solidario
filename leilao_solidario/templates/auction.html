@@ -35,8 +35,8 @@
                     <p>Parabéns, {{ ultimo_licitante.username }}</p>
                 </div>
                 <p class="margin-bottom-small">Leilão finalizado!</p>
-                <p class="margin-bottom-small"><strong>{{ ultimo_licitante }}</strong>, entre em contato com o leiloeiro deste item pelo contato {{ host.telefone }}.</p>
-                {% if current_user_id == auction.ultimo %}
+                <p class="margin-bottom-small"><strong>{{ ultimo_licitante.username }}</strong>, entre em contato com o leiloeiro deste item pelo contato {{ host.telefone }}.</p>
+                {% if current_user_id == auction.ultimo or current_user_id == auction.host%}
                     <p class="margin-bottom-small">Número secreto: <strong>{{ auction.numero_secreto }}</strong></p>
                 {% endif %}
             {% else %}
@@ -63,14 +63,16 @@
                 {% endif %}
             </div>
             <div class="error-wrapper-auction">
-                {% if erro == 1 %}
+                {% if erro == '1' %}
                     <p class="error">Você fez o lance mais recente.</p>
-                {% elif erro == 2 %}
+                {% elif erro == '2' %}
                     <p class="error">Você precisa fazer um lance maior que o atual.</p>
-                {% elif erro == 3 %}
+                {% elif erro == '3' %}
                     <p class="error">O tempo acabou, este último lance não foi computado.</p>
-                {% elif erro == 4 %}
+                {% elif erro == '4' %}
                     <p class="error">O tempo acabou, não foi possível cancelar o leilão.</p>
+                {% elif erro == '5' %}
+                    <p class="error">Só o leiloeiro pode cancelar o leilão.</p>
                 {% endif %}
             </div>
         </div>

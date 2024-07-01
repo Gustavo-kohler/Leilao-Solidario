@@ -40,37 +40,16 @@ a{
 }
 
 
+@media (max-width: 25rem) {
+    h1{
+        font-size: 4rem;
+    }
 
-.img-mancha{
-    position: absolute;
-    width: 18.2rem;
-    height: 18.2rem;
-}
+    h2{
+        font-size: 2rem;
+    }
 
-.esq-cima{
-    top: 0;
-    left: 0;
-}
-
-.esq-baixo{
-    bottom: 0;
-    left: 0;
-}
-
-.dir-cima{
-    top: 0;
-    right: 0;
-}
-
-.dir-baixo{
-    bottom: 0;
-    right: 0;
-}
-
-
-@media (max-width: 950px) {
-    .img-mancha{
-        width: 7rem;
-        height: 7rem;
+    .button{
+        font-size: .8rem;
     }
 }
