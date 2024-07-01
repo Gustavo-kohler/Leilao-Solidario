@@ -24,7 +24,7 @@ def pegar_imagem(leilao_id):
 @login_required
 def auction(auction_id, erro_id):
     auction = Leilao.query.get(auction_id)
-    erro_id = int(erro_id)
+    erro_id = erro_id
     imagem = pegar_imagem(auction.id)
     host = Usuario.query.get(auction.host)
     form_cancela_leilao = FormCancelAuction()
@@ -32,12 +32,12 @@ def auction(auction_id, erro_id):
     now = datetime.now()
 
     time_diff = now - auction.hora_ultimo
-    if time_diff.total_seconds() > timedelta(hours=24).total_seconds():
+    if time_diff.total_seconds() > timedelta(seconds=120).total_seconds() and auction.status == 'active':
         auction.status = "ended"
         db.session.commit()
         time_left = timedelta(seconds=0)
     else:
-        time_left = timedelta(hours=24) - time_diff
+        time_left = timedelta(seconds=120) - time_diff
     time_left = time_left.total_seconds()
 
     ultimo_licitante = Usuario.query.get(auction.ultimo)
@@ -57,6 +57,7 @@ def auction(auction_id, erro_id):
 
 
 @AUCTION.route('/auction/<auction_id>/novo_lance', methods=["POST"])
+@login_required
 def auction_novo_lance(auction_id):
     auction = Leilao.query.get(auction_id)
     form_novo_lance = FormNewBid()
@@ -71,14 +72,14 @@ def auction_novo_lance(auction_id):
             erro_id = 1  # mesmo user
         elif auction.lance_atual >= form_novo_lance.lance.data:
             erro_id = 2  # lance menor
-        elif time_diff.total_seconds() > timedelta(hours=24).total_seconds():
+        elif time_diff.total_seconds() > timedelta(seconds=120).total_seconds():
             erro_id = 3  # acabou tempo
         else:
             auction.lance_atual = form_novo_lance.lance.data
             auction.ultimo = current_user.get_id()
             auction.hora_ultimo = now
 
-            exists = UsuarioRelLeilao.query.filter_by(id_usuario=current_user.get_id()).first()
+            exists = UsuarioRelLeilao.query.filter((UsuarioRelLeilao.id_usuario == current_user.get_id()) & (UsuarioRelLeilao.id_leilao == auction.id)).first()
             if not exists:
                 relacao_usuario_leilao = UsuarioRelLeilao(id_usuario=current_user.get_id(), id_leilao=auction_id)
                 db.session.add(relacao_usuario_leilao)
@@ -88,6 +89,7 @@ def auction_novo_lance(auction_id):
 
 
 @AUCTION.route('/auction/<auction_id>/cancelar', methods=["POST"])
+@login_required
 def auction_cancela(auction_id):
     auction = Leilao.query.get(auction_id)
     form_cancela_leilao = FormCancelAuction()
@@ -98,8 +100,10 @@ def auction_cancela(auction_id):
     erro = 0  # sem erros
 
     if form_cancela_leilao.validate_on_submit():
-        if time_diff.total_seconds() > timedelta(hours=24).total_seconds():
+        if time_diff.total_seconds() > timedelta(seconds=120).total_seconds():
             erro = 4  # acabou tempo de cancelamento
+        elif int(current_user.get_id()) != auction.host:
+            erro = 5  # sem permissão para cancelarx
         else:
             auction.status = "canceled"
             db.session.commit()

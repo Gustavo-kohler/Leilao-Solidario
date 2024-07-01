@@ -44,7 +44,7 @@ def leiloes_ativos():
 def leiloes_finalizados():
 
     leiloes = db.session.query(Leilao).filter((Leilao.status == "ended") | (Leilao.status == "canceled")).join(UsuarioRelLeilao)\
-        .filter(UsuarioRelLeilao.id_usuario == current_user.id).all()
+        .filter(UsuarioRelLeilao.id_usuario == current_user.get_id()).all()
 
     leiloes_dict = [leilao.to_dict() for leilao in leiloes]
 
@@ -72,7 +72,7 @@ def meusleiloes_ativos():
 @LEILOES_BP.route('/meusleiloes-finalizados')
 @login_required
 def meusleiloes_finalizados():
-    leiloes = Leilao.query.filter_by(host=current_user.get_id()).filter_by(status="ended").all()
+    leiloes = Leilao.query.filter_by(host=current_user.get_id()).filter((Leilao.status == "ended") | (Leilao.status == "canceled")).all()
 
     leiloes_dict = [leilao.to_dict() for leilao in leiloes]
 
